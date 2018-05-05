@@ -1,0 +1,28 @@
+{
+  "name": "eng100d",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "repository": {
+  "type": "git",
+  "url": "git://github.com/emnguyen/eng100d.git"
+  },
+  "dependencies": {
+    "express-handlebars": "^3.0.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^8.4.1",
+    "browser-sync": "^2.24.4",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-postcss": "^7.0.1",
+    "gulp-sass": "^4.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
