@@ -8,7 +8,7 @@ npm install
 
 ## Development
 
-To start the server with Gulp (BrowserSync, Sass compiler, Autoprefixer):
+To start the server with Gulp (Nodemon, BrowserSync, Sass compiler, Autoprefixer):
 
 ```shell
 gulp
