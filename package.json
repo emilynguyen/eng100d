@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "repository": {
-  "type": "git",
-  "url": "git://github.com/emnguyen/eng100d.git"
+    "type": "git",
+    "url": "git://github.com/emnguyen/eng100d.git"
   },
   "dependencies": {
     "express-handlebars": "^3.0.0"

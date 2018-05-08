@@ -40,6 +40,7 @@ gulp.task('sass', function() {
 gulp.task('watch', function() {
   gulp.watch('public/scss/**/*.scss', ['sass']);
   gulp.watch('views/**/*.*').on('change', browserSync.reload);
+	gulp.watch('routes/*.*').on('change', browserSync.reload);
 });
 
 gulp.task('default', ['watch', 'sass', 'browserSync']);
