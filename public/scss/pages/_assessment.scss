@@ -1,0 +1,26 @@
+#question-list {
+  padding: 0;
+  margin: 0 0.8rem;
+  box-sizing: border-box;
+  font-size: .85rem;
+  line-height: 1rem;
+}
+
+.question-wrapper {
+   background-color: #f7f7f7;
+   padding: 1.5rem;
+   margin: 1rem 0;
+   border: #ddd solid 1px;
+}
+
+.question-options {
+  text-align: right;
+}
+
+.question {
+  list-style-position: inside;
+}
+
+textarea {
+  max-width: 100%;
+}

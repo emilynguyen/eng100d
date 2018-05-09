@@ -1,0 +1,19 @@
+[
+  {
+    "title": "Market Name",
+    "open": true
+  },
+  {
+    "title": "Do you see trash cans inside the store?",
+    "yn": true,
+    "weight": 1
+  },
+  {
+    "title": "What is the number of unhealthy products near the checkout area (including next to, below, on floor near the counter, or hanging above the counter)?",
+    "mc": true,
+    "choices" : [
+      "1-2", "3-5", "6-9", "10+"
+    ],
+    "weight": 1
+  }
+]
