@@ -60,11 +60,28 @@ function removeQuestion($question) {
 }
 
 function save() {
+  // Set empty weight fields to 1
+  $weight = $('.weight-container').find('input');
+  $weight.each(function() {
+    if (!$(this).val()) {
+      $(this).val('1');
+    }
+  });
+
+  // Disable not-required fields if required
+  $('.required-container').each(function() {
+    if ($(this).find('.required').is(':checked')) {
+      $(this).find('.not-required').prop('disabled', true);
+    }
+  });
+
   const answers = $('#assessment-form').serializeArray();
   console.log(answers);
   $.post('/save-form', answers, function(data) {
     return false;
   });
+
+  window.location.replace("/assess");
 }
 
 const main = function () {

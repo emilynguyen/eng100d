@@ -22,7 +22,8 @@ app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", home.view);
-app.get("/edit-form", form.edit);
+app.get("/assess", form.view);
+app.get("/assess-edit", form.edit);
 app.post("/save-form", form.save);
 
 app.listen(process.env.PORT || 3000, function() {

@@ -1,19 +1,22 @@
 [
   {
-    "title": "Market Name",
-    "open": true
+    "title": "Store Type",
+    "required": true,
+    "mc": true,
+    "choices": [
+      "Convenience", "Small", "Medium", "Large"
+    ],
+    "weight": 1
   },
   {
-    "title": "Do you see trash cans inside the store?",
+    "title": "Does the retailer sell tobacco products (including electronic smoking devices, but not including rolling papers)?",
+    "required": true,
     "yn": true,
     "weight": 1
   },
   {
-    "title": "What is the number of unhealthy products near the checkout area (including next to, below, on floor near the counter, or hanging above the counter)?",
-    "mc": true,
-    "choices" : [
-      "1-2", "3-5", "6-9", "10+"
-    ],
+    "title": "Is the retailer's tobacco license clearly displayed?",
+    "yn": true,
     "weight": 1
   }
 ]

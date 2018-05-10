@@ -1,0 +1,39 @@
+<h1>Market Assessment</h1>
+<a href="/assess-edit">Edit</a>
+<form onsubmit="submitAssessment(); return false;">
+  <ol>
+  {{#each questions}}
+    <li>
+      <h4>{{title}}{{#if required}}<span class="red"> *</span>{{/if}}</h4>
+
+      {{#if open}}
+        <input type="text" name="{{title}}" {{#if required}}required{{/if}}>
+      {{/if}}
+
+      {{#if yn}}
+        <input type="radio" name="{{title}}" value="yes" {{#if required}}required{{/if}}>&nbsp;Yes&nbsp;&nbsp;&nbsp;
+        <input type="radio" name="{{title}}" value="no">&nbsp;No
+      {{/if}}
+
+      {{#if mc}}
+        {{#each choices}}
+          <input type="radio" name="{{../title}}" value="{{this}}" {{#if ../required}}required{{/if}}>&nbsp;{{this}}<br>
+        {{/each}}
+      {{/if}}
+
+      {{#if weight}}
+        <input type="hidden" name="weight" value="{{weight}}">
+      {{/if}}
+
+      {{#unless weight}}
+        <input type="hidden" name="weight" value="null">
+      {{/unless}}
+
+    </li>
+  {{/each}}
+  </ol>
+
+  <button type="submit">Submit</button>
+</form>
+
+<script type="text/javascript" src="js/submit-form.js"></script>
