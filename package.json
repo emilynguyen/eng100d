@@ -8,6 +8,7 @@
     "url": "git://github.com/emnguyen/eng100d.git"
   },
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express-handlebars": "^3.0.0"
   },
   "devDependencies": {

@@ -302,6 +302,9 @@ template {
   display: none; }
 
 body {
+  min-height: 100%; }
+
+body {
   font-family: 'Helvetica Neue', Arial, sans-serif; }
 
 #question-list {
@@ -316,7 +319,8 @@ body {
   background-color: #f7f7f7;
   padding: 1.5rem;
   margin: 1rem 0;
-  border: #ddd solid 1px; }
+  border: #ddd solid 1px;
+  cursor: move; }
 
 .question-options {
   text-align: right; }

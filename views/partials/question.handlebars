@@ -4,29 +4,30 @@
     <button type="button" class="remove-question-btn">✕</button>
   </div>
 
-  <li class="question question-{{@index}} {{#if yn}}yn{{/if}}{{#if mc}}mc{{/if}}{{#if open}}open{{/if}}">
+  <li class="question {{#if yn}}yn{{/if}}{{#if mc}}mc{{/if}}{{#if open}}open{{/if}}">
 
     <h4>Question</h4>
-    <textarea name="title" rows="3" style="width: 100%">{{title}}</textarea>
+    <textarea name="title" rows="3" style="width: 100%" required>{{title}}</textarea>
 
     <h4>Question Type</h4>
-    <select name="type" required class="question-type">
+    <select name="type" required class="question-type-field">
+      <option disabled> -- Select a type -- </option>
       <option value="yn" {{#if yn}}selected{{/if}}>Yes/No</option>
       <option value="mc" {{#if mc}}selected{{/if}}>Multiple Choice</option>
       <option value="open" {{#if open}}selected{{/if}}>Open Response</option>
     </select>
 
-    {{#if mc}}
+    <div class="mc-choices-container">
       <p>Separate choices with a line break.</p>
-      <textarea name="mc-choices" cols="40" rows="6" required>{{#each choices}}{{this}}&#013;{{/each}}</textarea>
-      <br>
-      <input type="checkbox" name="other-option" value=true> Add "Other" option
-    {{/if}}
+      <textarea name="choices" cols="40" rows="6">{{#each choices}}{{this}}&#013;{{/each}}</textarea>
+    </div>
+    <input class="mc-choices-hidden" name="choices" type="hidden" value="null">
 
-    {{#unless open}}
+    <div class="weight-container">
       <h4>Weight</h4>
       <input name="weight" type="number" min="1" value="{{weight}}" placeholder="1">
-    {{/unless}}
+    </div>
+    <input class="weight-hidden" name="weight" type="hidden" value="null">
 
   </li> <!-- /.question -->
 </div> <!-- /.question-wrapper -->
