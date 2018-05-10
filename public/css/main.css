@@ -315,12 +315,11 @@ body {
   margin: 0 0.8rem;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-size: .85rem;
-  line-height: 1rem; }
+  font-size: .85rem; }
 
 .question-wrapper {
   background-color: #f7f7f7;
-  padding: 1.5rem;
+  padding: 1rem 2rem 0;
   margin: 1rem 0;
   border: #ddd solid 1px;
   cursor: move; }
@@ -328,8 +327,26 @@ body {
 .question-options {
   text-align: right; }
 
-.question {
-  list-style-position: inside; }
-
 textarea {
   max-width: 100%; }
+
+body {
+  counter-reset: item; }
+
+ol {
+  list-style: none; }
+
+li {
+  counter-increment: item;
+  margin-bottom: 2rem; }
+
+li:before {
+  content: counter(item);
+  background: #2889ff;
+  border-radius: 100%;
+  color: white;
+  width: 1.13em;
+  padding: 0.3rem;
+  text-align: center;
+  display: inline-block;
+  font-size: 1.3rem; }
