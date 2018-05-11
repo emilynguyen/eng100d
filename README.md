@@ -2,8 +2,16 @@
 
 ## Installation
 
+To install dependencies:
+
 ```shell
 npm install
+```
+
+To install Gulp on the command line:
+
+```
+sudo npm install --global gulp-cli
 ```
 
 ## Development
