@@ -11,12 +11,14 @@ function toggleWeight(show, $question) {
     $weight.show();
     $weightHidden.hide();
     $weightHidden.prop('disabled', true);
+    $weight.parent().find("label[for='weight']").show();
   }
   else {
     $weight.find('input').prop('disabled', true);
     $weight.hide();
     $weightHidden.show();
     $weightHidden.prop('disabled', false);
+    $weight.parent().find("label[for='weight']").hide();
   }
 }
 

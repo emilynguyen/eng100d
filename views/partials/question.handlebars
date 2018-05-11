@@ -1,40 +1,56 @@
 <div class="question-wrapper">
 
-  <div class="question-options">
-    <button type="button" class="remove-question-btn">✕</button>
-  </div>
+  <li class="list-group-item question {{#if yn}}yn{{/if}}{{#if mc}}mc{{/if}}{{#if open}}open{{/if}}">
 
-  <li class="question {{#if yn}}yn{{/if}}{{#if mc}}mc{{/if}}{{#if open}}open{{/if}}">
+    <div class="question-options">
+      <button type="button" class="remove-question-btn btn btn-danger btn-sm"><span class="oi oi-trash"></span></button>
 
-    <h4>Question</h4>
-    <textarea name="title" rows="3" style="width: 100%" required>{{title}}</textarea>
-
-    <h4>Question Type</h4>
-    <select name="type" required class="question-type-field">
-      <option disabled> -- Select a type -- </option>
-      <option value="yn" {{#if yn}}selected{{/if}}>Yes/No</option>
-      <option value="mc" {{#if mc}}selected{{/if}}>Multiple Choice</option>
-      <option value="open" {{#if open}}selected{{/if}}>Open Response</option>
-    </select>
-
-    <div class="mc-choices-container">
-      <p>Separate choices with a line break.</p>
-      <textarea name="choices" cols="40" rows="6">{{#each choices}}{{this}}&#013;{{/each}}</textarea>
+      <div class="form-group">
+        <div class="required-container form-check">
+          <input class="required form-check-input" type="checkbox" name="required" value=true {{#if required}}checked{{/if}}>
+          <label class="form-check-label" for="required">Required</label>
+          <input class="not-required" type="hidden" name="required" value=false>
+        </div>
+      </div>
     </div>
-    <input class="mc-choices-hidden" name="choices" type="hidden" value="null">
 
-    <div class="weight-container">
-      <h4>Weight</h4>
-      <input name="weight" type="number" min="1" value="{{weight}}" placeholder="1">
+    <div class="form-group row">
+      <label for="title" class="col-sm-2 col-form-label">Question</label>
+      <div class="col-sm-10">
+        <textarea class="form-control" name="title" rows="3" style="width: 100%" required>{{title}}</textarea>
+      </div>
+    </div>
+
+    <div class="form-group row">
+
+      <label for="type" class="col-sm-2 col-form-label">Type</label>
+      <div class="col-sm-6">
+        <select name="type" required class="question-type-field form-control">
+          <option disabled> -- Select a question type -- </option>
+          <option value="yn" {{#if yn}}selected{{/if}}>Yes/No</option>
+          <option value="mc" {{#if mc}}selected{{/if}}>Multiple Choice</option>
+          <option value="open" {{#if open}}selected{{/if}}>Open Response</option>
+        </select>
+      </div>
+
+      <label for="weight" class="col-sm-2 col-form-label">Weight</label>
+      <div class="col-sm-2 weight-container">
+        <input class="form-control" name="weight" type="number" min="1" value="{{weight}}" placeholder="1">
+      </div>
+
     </div>
     <input class="weight-hidden" name="weight" type="hidden" value="null">
 
-    <div class="required-container">
-      <p>
-      <input class="required" type="checkbox" name="required" value=true {{#if required}}checked{{/if}}>&nbsp;Required
-      <input class="not-required" type="hidden" name="required" value=false>
-      </p>
+    <div class="mc-choices-container form-group row">
+      <div class="col-sm-2">
+      </div>
+      <div class="col-sm-10">
+        <label for="choices"><small>Separate choices with a line break.</small></label>
+        <textarea class="form-control" name="choices" cols="40" rows="6">{{#each choices}}{{this}}&#013;{{/each}}</textarea>
+      </div>
     </div>
+    <input class="mc-choices-hidden" name="choices" type="hidden" value="null">
 
   </li> <!-- /.question -->
+
 </div> <!-- /.question-wrapper -->

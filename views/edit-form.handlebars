@@ -2,16 +2,17 @@
 <h1>Edit Market Assessment Form</h1>
 
   <form id="assessment-form" onsubmit="save(); return false;">
-    <ol id="question-list" class="sortable">
+    <ol id="question-list" class="sortable list-group">
       {{#each questions}}
         {{> question}}
       {{/each}}
     </ol>
 
-    <button type="submit">Save and Return</button>
+    <div style="margin: 2rem 0;">
+      <button type="button" class="add-question-btn btn btn-secondary" onclick="addQuestion()">Add Question</button>
+      <button type="submit" class="btn btn-success">Save and Return</button>
+    </div>
   </form>
-
-  <button type="button" class="add-question-btn" onclick="addQuestion()">Add Question</button>
 
 
 <script type="text/javascript" src="js/edit-form.js"></script>

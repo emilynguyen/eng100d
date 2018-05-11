@@ -1,4 +1,4 @@
-
+/*
 #question-list {
   padding: 0;
   margin: 0 0.8rem;
@@ -13,6 +13,14 @@
    border: #ddd solid 1px;
    cursor: move;
 }
+*/
+
+.list-group-item {
+  display: list-item;
+  list-style-position: inside;
+  margin: 1rem 0;
+  cursor: move;
+}
 
 .question-options {
   text-align: right;
@@ -26,6 +34,18 @@ textarea {
   max-width: 100%;
 }
 
+.assessment-q-list {
+  > li {
+    margin: 1.4rem 0;
+  }
+}
+
+.mc-choices-list {
+  list-style: none;
+  padding: 0;
+}
+
+/*
 body {
    counter-reset: item;
  }
@@ -47,4 +67,9 @@ body {
    text-align: center;
    display: inline-block;
    font-size: 1.3rem;
+ }
+ */
+
+ .weight-container {
+   //display: inline-block;
  }

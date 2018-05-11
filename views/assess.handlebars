@@ -1,13 +1,15 @@
 <h1>Market Assessment</h1>
-<a href="/assess-edit">Edit Form</a>
+<a href="/assess-edit"><button type="button" class="btn btn-secondary">Edit Form</button></a>
 <form onsubmit="submitAssessment(); return false;">
-  <ol>
+  <ol class="assessment-q-list">
   {{#each questions}}
     <li>
-      <h4>{{title}}{{#if required}}<span class="red"> *</span>{{/if}}</h4>
+      <div class="form-group">
+
+      <h6>{{title}}{{#if required}}<span class="red"> *</span>{{/if}}</h6>
 
       {{#if open}}
-        <input type="text" name="{{title}}" {{#if required}}required{{/if}}>
+        <input class="form-control" type="text" name="{{title}}" {{#if required}}required{{/if}}>
       {{/if}}
 
       {{#if yn}}
@@ -16,9 +18,13 @@
       {{/if}}
 
       {{#if mc}}
-        {{#each choices}}
-          <input type="radio" name="{{../title}}" value="{{this}}" {{#if ../required}}required{{/if}}>&nbsp;{{this}}<br>
-        {{/each}}
+        <ul class="mc-choices-list">
+          {{#each choices}}
+            <li>
+              <input type="radio" name="{{../title}}" value="{{this}}" {{#if ../required}}required{{/if}}>&nbsp;{{this}}
+            </li>
+          {{/each}}
+        </ul>
       {{/if}}
 
       {{#if weight}}
@@ -29,11 +35,12 @@
         <input type="hidden" name="weight" value="null">
       {{/unless}}
 
+      </div>
     </li>
   {{/each}}
   </ol>
 
-  <button type="submit">Submit</button>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
 <script type="text/javascript" src="js/submit-form.js"></script>
