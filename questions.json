@@ -1,5 +1,15 @@
 [
   {
+    "title": "Market Name",
+    "required": true,
+    "open": true
+  },
+  {
+    "title": "Market Address",
+    "required": true,
+    "open": true
+  },
+  {
     "title": "Store Type",
     "required": true,
     "mc": true,
