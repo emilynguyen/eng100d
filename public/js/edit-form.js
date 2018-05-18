@@ -79,7 +79,7 @@ function save() {
 
   const answers = $('#assessment-form').serializeArray();
   console.log(answers);
-  $.post('/save-form', answers, function(data) {
+  $.post('/assess-save', answers, function(data) {
     return false;
   });
 
