@@ -7,7 +7,7 @@ exports.view = function(req, res) {
 };
 
 exports.edit = function(req, res) {
-  res.render("edit-form", {
+  res.render("assess-edit", {
     questions
   });
 };

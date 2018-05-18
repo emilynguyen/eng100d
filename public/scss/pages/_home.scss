@@ -1,0 +1,15 @@
+
+#home-carousel {
+  .carousel-caption {
+    //margin-bottom: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: initial;
+  }
+}
+.home-hero {
+  height: calc(100vh - #{$header-height});
+  background-color: gray;
+  // temp
+  width: 100%;
+}

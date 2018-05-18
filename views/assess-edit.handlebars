@@ -1,0 +1,24 @@
+<div class="container main">
+
+<h2>Edit Market Assessment Form</h2>
+
+  <form id="assessment-form" onsubmit="save(); return false;">
+    <ol id="question-list" class="sortable list-group">
+      {{#each questions}}
+        {{> question}}
+      {{/each}}
+    </ol>
+
+    <div class="d-flex" style="margin-top: 2rem;">
+      <div>
+      <a role="button" class="btn btn-danger" href="/assess">Return</a>
+      <button type="submit" class="btn btn-success">Save and Return</button>
+    </div>
+      <button type="button" class="add-question-btn btn btn-primary ml-auto" onclick="addQuestion()">Add Question</button>
+
+    </div>
+
+
+  </form>
+</div>
+<script type="text/javascript" src="js/edit-form.js"></script>

@@ -8,7 +8,9 @@ var bodyParser = require('body-parser')
 
 // Routes
 var home = require("./routes/home");
-var form = require("./routes/form");
+var assess = require("./routes/assess");
+var login = require("./routes/login");
+var signup = require("./routes/signup");
 
 var app = express();
 
@@ -22,9 +24,11 @@ app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", home.view);
-app.get("/assess", form.view);
-app.get("/assess-edit", form.edit);
-app.post("/save-form", form.save);
+app.get("/assess", assess.view);
+app.get("/assess-edit", assess.edit);
+app.post("/assess-save", assess.save);
+app.get("/login", login.view);
+app.get("/signup", signup.view);
 
 app.listen(process.env.PORT || 3000, function() {
   console.log("Express server listening on port " + app.get("port"));
