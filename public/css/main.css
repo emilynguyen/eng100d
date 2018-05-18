@@ -7727,7 +7727,8 @@ body {
   background-color: #f9f9f9; }
 
 .container.main {
-  padding: 4rem 0; }
+  padding-top: 4rem;
+  padding-bottom: 4rem; }
 
 @font-face {
   font-family: 'Icons';
