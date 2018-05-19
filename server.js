@@ -11,6 +11,8 @@ var home = require("./routes/home");
 var assess = require("./routes/assess");
 var login = require("./routes/login");
 var signup = require("./routes/signup");
+var markets = require("./routes/markets");
+var data = require("./routes/data");
 
 var app = express();
 
@@ -29,6 +31,8 @@ app.get("/assess-edit", assess.edit);
 app.post("/assess-save", assess.save);
 app.get("/login", login.view);
 app.get("/signup", signup.view);
+app.get("/markets", markets.view);
+app.get("/data", data.view);
 
 app.listen(process.env.PORT || 3000, function() {
   console.log("Express server listening on port " + app.get("port"));

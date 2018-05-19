@@ -86,7 +86,7 @@ function save() {
   window.location.replace("/assess");
 }
 
-const main = function () {
+var main = function () {
   console.log("questions.js");
 
   $('.sortable').sortable();
