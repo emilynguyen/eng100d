@@ -92,7 +92,7 @@ var main = function () {
   $('.sortable').sortable({
     handle: ".card-header"
   });
-  //$('.sortable').disableSelection();
+  $('.sortable').disableSelection();
 
   $('.question').each(function() {
     if ($(this).hasClass('open')) {

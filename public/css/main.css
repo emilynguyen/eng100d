@@ -8275,7 +8275,7 @@ body {
 
 .container.main {
   padding-top: calc(4.5rem + 3rem);
-  padding-bottom: calc(4.5rem + 3rem); }
+  padding-bottom: calc(4.5rem); }
 
 @font-face {
   font-family: 'Icons';
@@ -8376,7 +8376,6 @@ input:checked + .slider:before {
   width: 100%; }
 
 #assessment-q-list {
-  padding-left: 1rem;
   margin: 0 0 4rem; }
   #assessment-q-list > li {
     margin: 1.4rem 0; }

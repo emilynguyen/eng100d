@@ -6,5 +6,5 @@ body {
 
 .container.main {
   padding-top: calc(#{$header-height} + 3rem);
-  padding-bottom: calc(#{$header-height} + 3rem);
+  padding-bottom: calc(#{$header-height});
 }
