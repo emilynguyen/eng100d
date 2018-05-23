@@ -5,13 +5,16 @@ header {
 
 .logo {
   max-height: 100%;
+  height: 3rem;
 }
 
+/*
 .navbar-brand {
   height: 3rem;
   width: 6.5rem;
   padding: 0;
 }
+*/
 
 .navbar-collapse {
   @include media-breakpoint-down(xs) {
