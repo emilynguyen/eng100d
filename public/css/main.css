@@ -8292,7 +8292,12 @@ header {
   max-height: 4.5rem; }
 
 .logo {
-  max-height: 3rem; }
+  max-height: 100%; }
+
+.navbar-brand {
+  height: 3rem;
+  width: 6.5rem;
+  padding: 0; }
 
 @media (max-width: 575.98px) {
   .navbar-collapse {
