@@ -1,23 +1,54 @@
 <div class="question-wrapper">
 
-  <li class="list-group-item question {{#if yn}}yn{{/if}}{{#if mc}}mc{{/if}}{{#if open}}open{{/if}}">
+  <li class="question card {{#if yn}}yn{{/if}}{{#if mc}}mc{{/if}}{{#if open}}open{{/if}}">
 
-    <div class="question-options">
-      <button type="button" class="remove-question-btn btn btn-danger btn-sm"><span class="oi oi-trash"></span></button>
+    <div class="card-header">
 
-      <div class="form-group">
-        <div class="required-container form-check">
-          <input class="required form-check-input" type="checkbox" name="required" value=true {{#if required}}checked{{/if}}>
-          <label class="form-check-label" for="required">Required</label>
-          <input class="not-required" type="hidden" name="required" value=false>
+      <div class="question-options d-flex flex-row justify-content-end align-items-center">
+
+        <div class="form-group">
+          <span class="oi oi-move"></span>
         </div>
-      </div>
-    </div>
+
+        <div class="form-group">
+          <div class="required-container form-check">
+            <input class="required form-check-input" type="checkbox" name="required" value=true {{#if required}}checked{{/if}}>
+            <label class="form-check-label" for="required">Required</label>
+            <input class="not-required" type="hidden" name="required" value=false>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="remove-question-btn"><span class="oi oi-trash"></span></div>
+        </div>
+        <!--
+          <div class="form-group">
+            <div class="required-container form-check">
+
+              <div class="d-flex align-items-center">
+                <label class="switch">
+                  <input class="required form-check-input" type="checkbox" name="required" value="true" {{#if required}}checked{{/if}}>
+                  <span class="slider round"></span>
+
+                  <input class="not-required" type="hidden" name="required" value=false>
+                </label>
+
+                <label class="form-check-label" for="required">Required</label>
+              </div>
+            </div>
+          </div>
+        -->
+
+      </div> <!-- /.question-options -->
+
+    </div> <!-- /.card-header -->
+    <div class="card-body">
+
 
     <div class="form-group row">
       <label for="title" class="col-sm-2 col-form-label">Question</label>
       <div class="col-sm-10">
-        <textarea class="form-control" name="title" rows="3" style="width: 100%" required>{{title}}</textarea>
+        <textarea class="form-control" name="title" rows="2" style="width: 100%" required>{{title}}</textarea>
       </div>
     </div>
 
@@ -45,11 +76,13 @@
       <div class="col-sm-2">
       </div>
       <div class="col-sm-10">
-        <label for="choices"><small>Separate choices with a line break.</small></label>
-        <textarea class="form-control" name="choices" cols="40" rows="6">{{#each choices}}{{this}}&#013;{{/each}}</textarea>
+        <label for="choices"><small>Place choices on separate lines.</small></label>
+        <textarea class="form-control" name="choices" cols="40" rows="4" required>{{#each choices}}{{this}}&#013;{{/each}}</textarea>
       </div>
     </div>
     <input class="mc-choices-hidden" name="choices" type="hidden" value="null">
+
+  </div> <!-- /card-body -->
 
   </li> <!-- /.question -->
 

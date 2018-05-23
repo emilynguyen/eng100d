@@ -9,7 +9,7 @@ var bodyParser = require('body-parser')
 // Routes
 var home = require("./routes/home");
 var assess = require("./routes/assess");
-var login = require("./routes/login");
+var admin = require("./routes/admin");
 var signup = require("./routes/signup");
 var markets = require("./routes/markets");
 var data = require("./routes/data");
@@ -29,7 +29,7 @@ app.get("/", home.view);
 app.get("/assess", assess.view);
 app.get("/assess-edit", assess.edit);
 app.post("/assess-save", assess.save);
-app.get("/login", login.view);
+app.get("/admin", admin.view);
 app.get("/signup", signup.view);
 app.get("/markets", markets.view);
 app.get("/data", data.view);

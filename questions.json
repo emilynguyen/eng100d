@@ -28,5 +28,52 @@
     "title": "Is the retailer's tobacco license clearly displayed?",
     "yn": true,
     "weight": 1
+  },
+  {
+  "title": "Are tobacco products easily accessible to minors i.e., within reach without help from market staff?",
+  "yn": true,
+  "weight": 1
+  },
+  {
+    "title": "How many tobacco ads do you see next to the checkout area (attached or directly next to)?",
+    "mc": true,
+    "choices": [
+      "0", "1-2", "3-5", "6-9", "10+"
+    ],
+    "weight": 1
+  },
+  {
+    "title": "How many tobacco ads do you see hanging from the ceiling (directly over the register)?",
+    "mc": true,
+    "choices": [
+      "0", "1-2", "3-5", "6-9", "10+"
+    ],
+    "weight": 1
+  },
+  {
+    "title": "Is there tobacco advertising next to candy or toy displays?",
+    "yn": true,
+    "weight": 1
+  },
+  {
+    "title": "How many tobacco ads do you see below the checkout area?",
+    "mc": true,
+    "choices": [
+      "0", "1-2", "3-5", "6-9", "10+"
+    ],
+    "weight": 1
+  },
+  {
+    "title": "Is there tobacco advertising at a height of 4 feet or lower?",
+    "yn": true,
+    "weight": 1
+  },
+  {
+    "title": "How many tobacco ads do you see on the floor near the checkout area?",
+    "mc": true,
+    "choices": [
+      "0", "1-2", "3-5", "6-9", "10+"
+    ],
+    "weight": 1
   }
 ]

@@ -1,0 +1,56 @@
+#question-list-edit {
+  margin: 0;
+  padding: 0;
+	counter-reset: question-edit-counter;
+
+  .question-options:before {
+  	content: counter(question-edit-counter);
+  	counter-increment: question-edit-counter;
+    font-size: 1.4rem;
+    margin-right: auto;
+  //  font-weight: bold;
+/*
+    background-color: #ffc107; // Replace w CCH color
+    border-radius: 2rem;
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+    color: #fff;
+    padding-top: 0.25rem;*/
+  }
+}
+
+.question {
+ //list-style-position: inside;
+ &.card {
+   margin: 1.5rem 0;
+ }
+ .card-header {
+   cursor: move;
+ }
+}
+
+textarea {
+  max-width: 100%;
+}
+
+.mc-choices-list {
+  list-style: none;
+  padding: 0;
+}
+
+.question-options {
+  .form-group {
+    padding-left: 1.4rem;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+}
+
+.remove-question-btn {
+  cursor: pointer;
+}
+
+.required {
+  cursor: pointer;
+}

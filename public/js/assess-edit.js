@@ -41,7 +41,7 @@ function toggleChoices(show, $question) {
 }
 
 function addQuestion() {
-  const $questionList = $('#question-list');
+  const $questionList = $('#question-list-edit');
   $questionList.append('<div class="question-wrapper"></div>');
   // Load question template
   var $newQuestion = $questionList.children().last();
@@ -89,8 +89,10 @@ function save() {
 var main = function () {
   console.log("questions.js");
 
-  $('.sortable').sortable();
-  $('.sortable').disableSelection();
+  $('.sortable').sortable({
+    handle: ".card-header"
+  });
+  //$('.sortable').disableSelection();
 
   $('.question').each(function() {
     if ($(this).hasClass('open')) {

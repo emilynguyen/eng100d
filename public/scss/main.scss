@@ -10,7 +10,7 @@
 @import
   'vendor/normalize',
   'vendor/open-iconic-bootstrap',
-  'vendor/bootstrap.min';
+  'vendor/bootstrap/bootstrap';
 
 // Base
 @import
@@ -25,8 +25,11 @@
   'layout/footer';
 
 // Components
+@import
+  'components/toggle';
 
 // Page-specific styles
 @import
   'pages/home',
-  'pages/assessment';
+  'pages/assess',
+  'pages/assess-edit';
