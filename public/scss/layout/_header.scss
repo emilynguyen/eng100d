@@ -1,7 +1,21 @@
 header {
-  height: $header-height;
+  height: $header-height !important;
+  max-height: $header-height;
 }
 
 .logo {
   max-height: 3rem;
+}
+
+.navbar-collapse {
+  @include media-breakpoint-down(xs) {
+    padding: 1.4rem 0.2rem;
+    text-align: right;
+    .btn {
+      margin-top: 0.9rem;
+    }
+  }
+  @include media-breakpoint-up(sm) {
+    height: 3.6rem;
+  }
 }

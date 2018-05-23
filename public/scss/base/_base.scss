@@ -5,6 +5,6 @@ body {
 }
 
 .container.main {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  padding-top: calc(#{$header-height} + 3rem);
+  padding-bottom: calc(#{$header-height} + 3rem);
 }

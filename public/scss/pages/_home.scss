@@ -1,5 +1,6 @@
 
 #home-carousel {
+  margin-top: $header-height;
   .carousel-caption {
     //margin-bottom: 0;
     top: 50%;
@@ -9,6 +10,8 @@
 }
 .home-hero {
   height: calc(100vh - #{$header-height});
+  //height: 100vh;
+  //margin-top: $header-height;
   background-color: gray;
   // temp
   width: 100%;

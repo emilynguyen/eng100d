@@ -8274,8 +8274,8 @@ body {
   background-color: #fcfcfc; }
 
 .container.main {
-  padding-top: 4rem;
-  padding-bottom: 4rem; }
+  padding-top: calc(4.5rem + 3rem);
+  padding-bottom: calc(4.5rem + 3rem); }
 
 @font-face {
   font-family: 'Icons';
@@ -8288,10 +8288,22 @@ body {
   color: red; }
 
 header {
-  height: 4rem; }
+  height: 4.5rem !important;
+  max-height: 4.5rem; }
 
 .logo {
   max-height: 3rem; }
+
+@media (max-width: 575.98px) {
+  .navbar-collapse {
+    padding: 1.4rem 0.2rem;
+    text-align: right; }
+    .navbar-collapse .btn {
+      margin-top: 0.9rem; } }
+
+@media (min-width: 576px) {
+  .navbar-collapse {
+    height: 3.6rem; } }
 
 .switch {
   position: relative;
@@ -8342,14 +8354,16 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%; }
 
-#home-carousel .carousel-caption {
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  bottom: initial; }
+#home-carousel {
+  margin-top: 4.5rem; }
+  #home-carousel .carousel-caption {
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    bottom: initial; }
 
 .home-hero {
-  height: calc(100vh - 4rem);
+  height: calc(100vh - 4.5rem);
   background-color: gray;
   width: 100%; }
 
