@@ -1,79 +1,66 @@
 [
   {
+    "sectionBreak": true,
+    "title": "Market Interior - Tobacco and Alcohol"
+  },
+  {
     "title": "Market Name",
     "required": true,
-    "open": true
-  },
-  {
-    "title": "Market Address",
-    "required": true,
-    "open": true
-  },
-  {
-    "title": "Store Type",
-    "required": true,
-    "mc": true,
-    "choices": [
-      "Convenience", "Small", "Medium", "Large"
-    ],
-    "weight": 1
+    "type": "open"
   },
   {
     "title": "Does the retailer sell tobacco products (including electronic smoking devices, but not including rolling papers)?",
     "required": true,
-    "yn": true,
-    "weight": 1
+    "type": "yn",
+    "choices" : [
+      {
+        "choice": "Yes",
+        "level": 0
+      },
+      {
+        "choice": "No",
+        "level": 1
+      }
+    ]
   },
   {
-    "title": "Is the retailer's tobacco license clearly displayed?",
-    "yn": true,
-    "weight": 1
-  },
-  {
-  "title": "Are tobacco products easily accessible to minors i.e., within reach without help from market staff?",
-  "yn": true,
-  "weight": 1
+    "title": "Are tobacco products easily accessible to minors i.e., within reach without help from market staff?",
+    "type": "yn",
+    "choices" : [
+      {
+        "choice": "Yes",
+        "level": 1
+      },
+      {
+        "choice": "No",
+        "level": 3
+      }
+    ]
   },
   {
     "title": "How many tobacco ads do you see next to the checkout area (attached or directly next to)?",
-    "mc": true,
-    "choices": [
-      "0", "1-2", "3-5", "6-9", "10+"
-    ],
-    "weight": 1
-  },
-  {
-    "title": "How many tobacco ads do you see hanging from the ceiling (directly over the register)?",
-    "mc": true,
-    "choices": [
-      "0", "1-2", "3-5", "6-9", "10+"
-    ],
-    "weight": 1
-  },
-  {
-    "title": "Is there tobacco advertising next to candy or toy displays?",
-    "yn": true,
-    "weight": 1
-  },
-  {
-    "title": "How many tobacco ads do you see below the checkout area?",
-    "mc": true,
-    "choices": [
-      "0", "1-2", "3-5", "6-9", "10+"
-    ],
-    "weight": 1
-  },
-  {
-    "title": "Is there tobacco advertising at a height of 4 feet or lower?",
-    "yn": true,
-    "weight": 1
-  },
-  {
-    "title": "How many tobacco ads do you see on the floor near the checkout area?",
-    "mc": true,
-    "choices": [
-      "0", "1-2", "3-5", "6-9", "10+"
-    ],
-    "weight": 1
+    "type": "range",
+    "choices" : [
+      {
+        "choice": "0",
+        "level": 2
+      },
+      {
+        "choice": "1-2",
+        "level": 1
+      },
+      {
+        "choice": "3-5",
+        "level": 1
+      },
+      {
+        "choice": "6-9",
+        "level": 0
+      },
+      {
+        "choice": "10+",
+        "level": 0
+      }
+    ]
   }
 ]

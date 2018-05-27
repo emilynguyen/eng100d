@@ -10,7 +10,8 @@
         <div class="required-container form-check">
           <input class="required form-check-input" type="checkbox" name="required" value=true>
           <label class="form-check-label" for="required">Required</label>
-          <input class="not-required" type="hidden" name="required" value=false>
+          <!--
+          <input class="not-required" type="hidden" name="required" value=false> -->
         </div>
       </div>
 
@@ -24,7 +25,7 @@
   <div class="card-body">
 
     <div class="form-group row">
-      <label for="title" class="col-sm-2 col-form-label">Question</label>
+      <label for="title" class="col-sm-2 col-form-label">Title</label>
       <div class="col-sm-10">
         <textarea class="form-control" name="title" rows="2" style="width: 100%" required></textarea>
       </div>
@@ -36,27 +37,18 @@
         <select name="type" required class="question-type-field form-control">
           <option disabled selected value> -- Select a question type -- </option>
           <option value="yn">Yes/No</option>
-          <option value="mc">Multiple Choice</option>
+          <option value="range">Multiple Choice - Range</option>
+          <option value="quality">Multiple Choice - Quality</option>
           <option value="open">Open Response</option>
         </select>
       </div>
-
-      <label for="weight" class="col-sm-2 col-form-label">Weight</label>
-      <div class="col-sm-2 weight-container">
-        <input class="form-control" name="weight" type="number" min="1" value="1" placeholder="1">
-      </div>
     </div> <!-- /.row -->
-    <input class="weight-hidden" name="weight" type="hidden" value="null">
 
     <!-- MC choices -->
     <div class="mc-choices-container form-group row">
-      <div class="col-sm-2">
-      </div>
-      <div class="col-sm-10">
-        <label for="choices"><small>Place choices on separate lines.</small></label>
-        <textarea class="form-control" name="choices" cols="40" rows="4" required></textarea>
-      </div>
-    </div>
+      <!-- Load choices and choice levels here -->
+    </div> <!-- /.mc-choices-container -->
+
     <input class="mc-choices-hidden" name="choices" type="hidden" value="null">
 
   </div> <!-- /card-body -->

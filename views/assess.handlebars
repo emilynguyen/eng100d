@@ -1,6 +1,7 @@
 <div class="container main">
 
   <h2>Market Assessment</h2>
+
   <div class="text-right">
     <a href="/assess-edit"><button type="button" class="btn btn-secondary">Edit </button></a>
   </div>
@@ -8,40 +9,50 @@
   <form onsubmit="submitAssessment(); return false;">
     <ol id="assessment-q-list">
     {{#each questions}}
+
+      {{#if sectionBreak}}
+        <h4 class="section-break-title">{{title}}</h4>
+      {{/if}}
+
+      {{#unless sectionBreak}}
       <li>
         <div class="form-group">
 
-        <h6>{{title}}{{#if required}}<span class="red"> *</span>{{/if}}</h6>
+        <p>{{title}}{{#if required}}<span class="red"> *</span>{{/if}}</p>
 
-        {{#if open}}
+        {{#ifEquals type 'open'}}
           <input class="form-control" type="text" name="{{title}}" {{#if required}}required{{/if}}>
-        {{/if}}
+        {{/ifEquals}}
 
-        {{#if yn}}
-          <input type="radio" name="{{title}}" value="yes" {{#if required}}required{{/if}}>&nbsp;Yes&nbsp;&nbsp;&nbsp;
-          <input type="radio" name="{{title}}" value="no">&nbsp;No
-        {{/if}}
+        {{#ifEquals type 'yn'}}
+          {{#each choices}}
+            <input type="radio" name="{{../title}}" value="{{concat level choice}}" {{#if ../required}}required{{/if}}>&nbsp;{{choice}}&nbsp;&nbsp;
+          {{/each}}
+        {{/ifEquals}}
 
-        {{#if mc}}
+        {{#ifEquals type 'range'}}
           <ul class="mc-choices-list">
             {{#each choices}}
               <li>
-                <input type="radio" name="{{../title}}" value="{{this}}" {{#if ../required}}required{{/if}}>&nbsp;{{this}}
+                <input type="radio" name="{{../title}}" value="{{concat level choice}}" {{#if ../required}}required{{/if}}>&nbsp;{{choice}}
               </li>
             {{/each}}
           </ul>
-        {{/if}}
+        {{/ifEquals}}
 
-        {{#if weight}}
-          <input type="hidden" name="weight" value="{{weight}}">
-        {{/if}}
-
-        {{#unless weight}}
-          <input type="hidden" name="weight" value="null">
-        {{/unless}}
+        {{#ifEquals type 'quality'}}
+          <ul class="mc-choices-list">
+            {{#each choices}}
+              <li>
+                <input type="radio" name="{{../title}}" value="{{concat level choice}}" {{#if ../required}}required{{/if}}>&nbsp;{{choice}}
+              </li>
+            {{/each}}
+          </ul>
+        {{/ifEquals}}
 
         </div>
       </li>
+      {{/unless}}
     {{/each}}
     </ol>
 

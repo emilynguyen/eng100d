@@ -8380,23 +8380,23 @@ input:checked + .slider:before {
   #assessment-q-list > li {
     margin: 1.4rem 0; }
 
+.section-break-title {
+  padding-left: 0;
+  margin-left: -2.45rem; }
+
 #question-list-edit {
   margin: 0;
   padding: 0;
   counter-reset: question-edit-counter; }
-  #question-list-edit .question-options:before {
+  #question-list-edit .question-options:not(.section-break):before {
     content: counter(question-edit-counter);
     counter-increment: question-edit-counter;
     font-size: 1.4rem;
-    margin-right: auto;
-    /*
-    background-color: #ffc107; // Replace w CCH color
-    border-radius: 2rem;
-    width: 2rem;
-    height: 2rem;
-    text-align: center;
-    color: #fff;
-    padding-top: 0.25rem;*/ }
+    margin-right: auto; }
+  #question-list-edit .question-options.section-break:before {
+    font-size: 1.4rem;
+    content: "Section Break";
+    margin-right: auto; }
 
 .question.card {
   margin: 1.5rem 0; }

@@ -1,4 +1,5 @@
 
+
 var main = function() {
 	/* Highlight active nav item */
 	var url = window.location.href;
@@ -8,4 +9,3 @@ var main = function() {
 };
 
 $(document).ready(main);
-
