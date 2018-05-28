@@ -1,0 +1,26 @@
+[
+	{
+		"name": "African Caribbean Food Market",
+		"address": {
+			"address": "4811 El Cajon Blvd",
+			"city": "San Diego",
+			"state": "CA",
+			"zip": "92115"
+		},
+		"storeType": "Small",
+		"level": "0",
+		"assessments": []
+	},
+	{
+		"name": "Balboa International Market",
+		"address": {
+			"address": "5905 Balboa Ave",
+			"city": "San Diego",
+			"state": "CA",
+			"zip": "92111"
+		},
+		"storeType": "Large",
+		"level": "2",
+		"assessments": []
+	}
+]

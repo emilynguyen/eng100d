@@ -10,3 +10,11 @@
   padding-left: 0;
   margin-left: -2.45rem;
 }
+
+// Adds red asterisk
+.required-input {
+	&:after {
+		content: " *";
+		color: red;
+	}
+}

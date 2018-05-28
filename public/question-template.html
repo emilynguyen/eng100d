@@ -7,11 +7,9 @@
       </div>
 
       <div class="form-group">
-        <div class="required-container form-check">
+        <div class="form-check">
           <input class="required form-check-input" type="checkbox" name="required" value=true>
           <label class="form-check-label" for="required">Required</label>
-          <!--
-          <input class="not-required" type="hidden" name="required" value=false> -->
         </div>
       </div>
 
@@ -34,7 +32,7 @@
     <div class="form-group row">
       <label for="type" class="col-sm-2 col-form-label">Type</label>
       <div class="col-sm-6">
-        <select name="type" required class="question-type-field form-control">
+        <select name="type" required class="question-type-field form-control custom-select">
           <option disabled selected value> -- Select a question type -- </option>
           <option value="yn">Yes/No</option>
           <option value="range">Multiple Choice - Range</option>

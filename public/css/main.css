@@ -8384,6 +8384,10 @@ input:checked + .slider:before {
   padding-left: 0;
   margin-left: -2.45rem; }
 
+.required-input:after {
+  content: " *";
+  color: red; }
+
 #question-list-edit {
   margin: 0;
   padding: 0;

@@ -1,8 +1,9 @@
 const questions = require("../questions.json");
+const markets = require("../markets.json");
 
 exports.view = function(req, res) {
   res.render("assess", {
-    questions
+    questions, markets
   });
 };
 

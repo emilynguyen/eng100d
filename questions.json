@@ -4,11 +4,6 @@
     "title": "Market Interior - Tobacco and Alcohol"
   },
   {
-    "title": "Market Name",
-    "required": true,
-    "type": "open"
-  },
-  {
     "title": "Does the retailer sell tobacco products (including electronic smoking devices, but not including rolling papers)?",
     "required": true,
     "type": "yn",

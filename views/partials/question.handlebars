@@ -11,12 +11,17 @@
         </div>
 
         <div class="form-group">
-          <div class="required-container form-check">
+            
+          <div class="form-check">
             <input class="required form-check-input" type="checkbox" name="required" value=true {{#if required}}checked{{/if}}>
             <label class="form-check-label" for="required">Required</label>
-            <!--
-            <input class="not-required" type="hidden" name="required" value=false> -->
           </div>
+            <!--
+            <div class="custom-control custom-checkbox form-chec">
+              <input type="checkbox" class="custom-control-input required" id="required-checkbox-{{@index}}" name="required" value=true {{#if required}}checked{{/if}}>
+              <label class="custom-control-label" for="required-checkbox-{{@index}}">Required</label>
+            </div>
+          -->
         </div>
 
         <div class="form-group">
@@ -27,7 +32,6 @@
 
     </div> <!-- /.card-header -->
     <div class="card-body">
-
 
     <div class="form-group row">
       <label for="title" class="col-sm-2 col-form-label">Title</label>
@@ -40,8 +44,8 @@
 
       <label for="type" class="col-sm-2 col-form-label">Type</label>
       <div class="col-sm-6">
-        <select name="type" required class="question-type-field form-control">
-          <option disabled> -- Select a question type -- </option>
+        <select name="type" required class="question-type-field form-control custom-select">
+          <option disabled selected value> -- Select a question type -- </option>
           <option value="yn" {{#ifEquals type 'yn'}}selected{{/ifEquals}}>Yes/No</option>
           <option value="range" {{#ifEquals type 'range'}}selected{{/ifEquals}}>Multiple Choice - Range</option>
           <option value="quality" {{#ifEquals type 'quality'}}selected{{/ifEquals}}>Multiple Choice - Quality</option>
@@ -68,7 +72,7 @@
         <!-- Corresponding level choices -->
         {{#each choices}}
           <div class="form-group">
-            <select name="choiceLevels" class="form-control" required>
+            <select name="choiceLevels" class="form-control custom-select" required>
               <option value="" disabled> -- Level -- </option>
               <option value="0" {{#ifEquals this.level "0"}}selected{{/ifEquals}}>0 or N/A</option>
               <option value="1" {{#ifEquals this.level "1"}}selected{{/ifEquals}}>1</option>
