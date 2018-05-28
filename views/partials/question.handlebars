@@ -11,7 +11,7 @@
         </div>
 
         <div class="form-group">
-            
+
           <div class="form-check">
             <input class="required form-check-input" type="checkbox" name="required" value=true {{#if required}}checked{{/if}}>
             <label class="form-check-label" for="required">Required</label>
@@ -57,7 +57,7 @@
     <div class="mc-choices-container form-group row">
       {{#ifNotEquals type 'open'}}
       <label for="choices" class="col-sm-2 col-form-label">Choices</label>
-      <div class="col-sm-7 col-9 mc-choices">
+      <div class="col-sm-4 col-5 mc-choices">
         <!-- Load choices and choice levels here -->
         {{#each choices}}
           <div class="form-group">
@@ -66,16 +66,19 @@
         {{/each}}
       </div> <!-- /.mc-choices -->
 
-      <div class="col-sm-3 col-3 mc-choice-levels">
+      <div class="col-sm-6 col-7 mc-choice-levels">
         <!-- Corresponding level choices -->
         {{#each choices}}
           <div class="form-group">
             <select name="choiceLevels" class="form-control custom-select" required>
-              <option value="" disabled> -- Level -- </option>
-              <option value="0" {{#ifEquals this.level "0"}}selected{{/ifEquals}}>0 or N/A</option>
-              <option value="1" {{#ifEquals this.level "1"}}selected{{/ifEquals}}>1</option>
-              <option value="2" {{#ifEquals this.level "2"}}selected{{/ifEquals}}>2</option>
-              <option value="3" {{#ifEquals this.level "3"}}selected{{/ifEquals}}>3</option>
+              <option value="" disabled> -- Point Distribution -- </option>
+              <option value="0" {{#ifEquals this.level "0"}}selected{{/ifEquals}}>0 points or N/A</option>
+              <option value="1" {{#ifEquals this.level "1"}}selected{{/ifEquals}}>Point for lvl 1</option>
+              <option value="2" {{#ifEquals this.level "2"}}selected{{/ifEquals}}>Point for lvl 2</option>
+              <option value="3" {{#ifEquals this.level "3"}}selected{{/ifEquals}}>Point for lvl 3</option>
+              <option value="lock1" {{#ifEquals this.level "lock1"}}selected{{/ifEquals}}>Lock out of lvl 1</option>
+              <option value="lock2" {{#ifEquals this.level "lock2"}}selected{{/ifEquals}}>Lock out of lvl 2</option>
+              <option value="lock3" {{#ifEquals this.level "lock3"}}selected{{/ifEquals}}>Lock out of lvl 3</option>
             </select>
           </div>
         {{/each}}

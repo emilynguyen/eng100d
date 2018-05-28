@@ -8269,13 +8269,18 @@ a.text-dark:hover, a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6; } }
 
+html {
+  font-size: 90%; }
+
 body {
   min-height: 100%;
   background-color: #fcfcfc; }
 
 .container.main {
-  padding-top: calc(4.5rem + 3rem);
+  padding-top: calc(4.5rem + 4rem);
   padding-bottom: calc(4.5rem); }
+  .container.main h2 {
+    padding-bottom: 2rem; }
 
 @font-face {
   font-family: 'Icons';
@@ -8368,12 +8373,22 @@ input:checked + .slider:before {
     top: 50%;
     -webkit-transform: translateY(-50%);
             transform: translateY(-50%);
-    bottom: initial; }
+    bottom: initial;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 2.4rem 2rem 2rem;
+    border-radius: 0.3rem;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 45rem; }
+    #home-carousel .carousel-caption h1 {
+      font-size: 2.2rem; }
 
 .home-hero {
   height: calc(100vh - 4.5rem);
+  width: 100%;
   background-color: gray;
-  width: 100%; }
+  background: url("../img/hero.jpg") no-repeat center center fixed;
+  background-size: cover; }
 
 #assessment-q-list {
   margin: 0 0 4rem; }
@@ -8382,7 +8397,10 @@ input:checked + .slider:before {
 
 .section-break-title {
   padding-left: 0;
-  margin-left: -2.45rem; }
+  margin-left: -2.75rem; }
+
+#assessment-form .required-input {
+  font-weight: bold; }
 
 .required-input:after {
   content: " *";

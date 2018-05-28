@@ -4,7 +4,7 @@
     "title": "Market Interior - Tobacco and Alcohol"
   },
   {
-    "title": "Does the retailer sell tobacco products (including electronic smoking devices, but not including rolling papers)?",
+    "title": "Are there tobacco products for sale in the market (including electronic smoking devices, but not including rolling papers)?",
     "required": true,
     "type": "yn",
     "choices" : [
@@ -14,12 +14,179 @@
       },
       {
         "choice": "No",
-        "level": 1
+        "level": 0
       }
     ]
   },
   {
-    "title": "Are tobacco products easily accessible to minors i.e., within reach without help from market staff?",
+    "title": "Is the market’s tobacco license clearly displayed?",
+    "type": "yn",
+    "choices" : [
+      {
+        "choice": "Yes",
+        "level": 1
+      },
+      {
+        "choice": "No",
+        "level": 0
+      }
+    ]
+  },
+  {
+    "title": "Are tobacco products easily accessible e.g., within reach without help from market staff?",
+    "type": "yn",
+    "choices" : [
+      {
+        "choice": "Yes",
+        "level": 0
+      },
+      {
+        "choice": "No",
+        "level": 0
+      }
+    ]
+  },
+  {
+    "title": "How many tobacco ads do you see in the checkout area (i.e., attached to, hanging from the ceiling, below, or on the floor of the checkout area)?",
+    "type": "range",
+    "choices" : [
+      {
+        "choice": "0",
+        "level": 3
+      },
+      {
+        "choice": "1-2",
+        "level": 3
+      },
+      {
+        "choice": "3-5",
+        "level": 0
+      },
+      {
+        "choice": "6-9",
+        "level": 0
+      },
+      {
+        "choice": "10+",
+        "level": 0
+      }
+    ]
+  },
+  {
+    "title": "Is there tobacco advertising next to candy or toy displays?",
+    "type": "yn",
+    "choices" : [
+      {
+        "choice": "Yes",
+        "level": 0
+      },
+      {
+        "choice": "No",
+        "level": 0
+      }
+    ]
+  },
+  {
+    "title": "Is there tobacco advertising at a height of 4 feet or lower?",
+    "type": "yn",
+    "choices" : [
+      {
+        "choice": "Yes",
+        "level": 0
+      },
+      {
+        "choice": "No",
+        "level": 0
+      }
+    ]
+  },
+  {
+    "title": "How many tobacco ads do you see on the floor near the checkout area?",
+    "type": "yn",
+    "choices" : [
+      {
+        "choice": "Yes",
+        "level": 0
+      },
+      {
+        "choice": "No",
+        "level": 0
+      }
+    ]
+  },
+  {
+    "title": "Does the market sell electronic smoking devices?",
+    "type": "yn",
+    "choices" : [
+      {
+        "choice": "Yes",
+        "level": 0
+      },
+      {
+        "choice": "No",
+        "level": 0
+      }
+    ]
+  },
+  {
+    "title": "Is there advertising for electronic smoking devices 2 feet or closer to candy, snacks, and/or non-alcoholic beverages?",
+    "type": "yn",
+    "choices" : [
+      {
+        "choice": "Yes",
+        "level": 0
+      },
+      {
+        "choice": "No",
+        "level": 0
+      }
+    ]
+  },
+  {
+    "title": "Are there any electronic smoking devices accessible to customers?",
+    "type": "yn",
+    "choices" : [
+      {
+        "choice": "Yes",
+        "level": 0
+      },
+      {
+        "choice": "No",
+        "level": 0
+      }
+    ]
+  },
+  {
+    "title": "Are there any electronic smoking devices accessible to customers?",
+    "type": "yn",
+    "choices" : [
+      {
+        "choice": "Yes",
+        "level": 0
+      },
+      {
+        "choice": "No",
+        "level": 0
+      }
+    ]
+  },
+  {
+    "title": "Does the market sell alcohol?",
+    "required": true,
+    "type": "yn",
+    "choices" : [
+      {
+        "choice": "Yes",
+        "level": 0
+      },
+      {
+        "choice": "No",
+        "level": 0
+      }
+    ]
+  },
+  {
+    "title": "Does the market sell single-serve alcoholic beverages?",
     "type": "yn",
     "choices" : [
       {
@@ -33,27 +200,15 @@
     ]
   },
   {
-    "title": "How many tobacco ads do you see next to the checkout area (attached or directly next to)?",
-    "type": "range",
+    "title": "Are alcohol products easily accessible to minors?",
+    "type": "yn",
     "choices" : [
       {
-        "choice": "0",
-        "level": 2
-      },
-      {
-        "choice": "1-2",
-        "level": 1
-      },
-      {
-        "choice": "3-5",
-        "level": 1
-      },
-      {
-        "choice": "6-9",
+        "choice": "Yes",
         "level": 0
       },
       {
-        "choice": "10+",
+        "choice": "No",
         "level": 0
       }
     ]

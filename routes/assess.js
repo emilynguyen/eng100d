@@ -15,7 +15,7 @@ exports.edit = function(req, res) {
 
 exports.save = function(req, res) {
   const newQuestions = req.body;
-
+  
   // Clear current questions
   questions.splice(0, questions.length);
 
