@@ -183,7 +183,8 @@ function save() {
     data: JSON.stringify(finalResults)
   });
 
-  window.location.replace("/assess"); 
+  alert('Your changes have been saved.');
+  //window.location.replace("/assess"); 
 }
 
 /* 

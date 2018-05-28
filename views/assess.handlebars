@@ -2,10 +2,6 @@
 
   <h2>Market Assessment<span id="market-name"></span></h2>
 
-    <div class="text-right form-group">
-      <a href="/assess-edit"><button type="button" class="btn btn-secondary">Edit </button></a>
-    </div>
-
   <div class="card" id="pre-assess-container">
     <div class="card-body">
       <form id="pre-assess-form" onsubmit="submitPreAssess(); return false;">
@@ -43,7 +39,7 @@
           <div class="form-row">
             <div class="form-group col-sm-7 col-md-8">
               <label for="inputMarketName" class="required-input">Market name</label>
-              <input type="text" class="form-control" id="inputMarketName" name="marketName" required>
+              <input type="text" class="form-control" id="inputMarketName" name="marketNxwame" required>
             </div>
             <div class="form-group col-sm-5 col-md-4">
               <label for="store-type" class="required-input">Store type</label>
@@ -104,7 +100,7 @@
       <li>
         <div class="form-group">
 
-        <p>{{title}}{{#if required}}<span class="red"> *</span>{{/if}}</p>
+        <p {{#if required}}class="required-input"{{/if}}>{{title}}</p>
 
         {{#ifEquals type 'open'}}
           <input class="form-control" type="text" name="{{title}}" {{#if required}}required{{/if}}>
@@ -172,4 +168,4 @@
 
 </div>
 
-<script type="text/javascript" src="js/assess-submit.js"></script>
+<script type="text/javascript" src="js/assess.js"></script>

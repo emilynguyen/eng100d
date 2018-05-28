@@ -42,7 +42,7 @@ $(document).ready(function() {
 	// DEV ONLY
 	//$('body').find(':input').prop('required', false);
 	$('#market-name').hide();
-	$('#assessment-form').css('opacity', 0);
+	$('#assessment-form').css('opacity', 0);	
 
 	// Disable new market fields by default
 	$('#new-market-input').find(':input').prop('disabled', true);
