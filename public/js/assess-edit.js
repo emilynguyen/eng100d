@@ -75,7 +75,7 @@ function toggleChoices(show, $question) {
 function addQuestion() {
   const $questionList = $('#question-list-edit');
   $questionList.append('<div class="question-wrapper"></div>');
-  
+
   var $newQuestion = $questionList.children().last();
   // Load question template, hide choices by default
   $newQuestion.load('question-template.html', function() {
@@ -102,7 +102,7 @@ function removeQuestion($question) {
 function addSection() {
   const $questionList = $('#question-list-edit');
   $questionList.append('<div class="question-wrapper"></div>');
-  
+
   // Load section break template
   var $newQuestion = $questionList.children().last();
   $newQuestion.load('/question-components/section-break.html');
@@ -141,13 +141,13 @@ function save() {
 
       // Otherwise, format new question
       switch(name) {
-        case 'choices': 
+        case 'choices':
           choices.push(val);
           break;
-        case 'choiceLevels': 
+        case 'choiceLevels':
           choiceLevels.push(val);
           break;
-        default: 
+        default:
           newQuestion[name] = val;
       }
     }
@@ -161,7 +161,7 @@ function save() {
     else if (choices.length > 0) {
       const choicePairs = [];
 
-      // Pair choices and their levels 
+      // Pair choices and their levels
       for (let j = 0; j < choices.length; j++) {
         choicePairs.push({
           "choice": choices[j],
@@ -183,11 +183,13 @@ function save() {
     data: JSON.stringify(finalResults)
   });
 
+  console.log(finalResults);
+
   alert('Your changes have been saved.');
-  //window.location.replace("/assess"); 
+  //window.location.replace("/assess");
 }
 
-/* 
+/*
  * MAIN FUNCTION
  */
 var main = function () {

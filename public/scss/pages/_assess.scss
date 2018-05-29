@@ -8,10 +8,16 @@
 
 .section-break-title {
   padding-left: 0;
-  margin-left: -2.45rem;
+  margin-left: -2.75rem;
 }
 
 // Adds red asterisk
+#assessment-form {
+  .required-input {
+    font-weight: bold;
+  }
+}
+
 .required-input {
 	&:after {
 		content: " *";

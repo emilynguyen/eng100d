@@ -24,3 +24,24 @@ exports.save = function(req, res) {
     questions.push(newQuestions[i]);
   }
 };
+
+exports.saveMarket = function(req, res) {
+  markets.push(req.body);
+  return;
+};
+
+exports.submit = function(req, res) {
+  const assessment = req.body.assessment;
+  const level = req.body.level;
+  const name = req.body.marketName;
+
+  for (let i = 0; i < markets.length; i++) {
+    // Find market
+    if (markets[i].name === name) {
+      markets[i].assessments.push(assessment);
+      markets[i].level = level;
+    }
+  }
+
+  console.log(markets);
+};

@@ -1,0 +1,83 @@
+<div class="card" id="pre-assess-container">
+  <div class="card-body">
+    <form id="pre-assess-form" onsubmit="submitPreAssess(); return false;">
+
+      <div class="form-row">
+        <div class="col-12">
+          <label class="required-input">Name</label>
+        </div>
+        <div class="form-group col-sm-6">
+          <input name="firstName" type="text" class="form-control" placeholder="First" required>
+        </div>
+        <div class="form-group col-sm-6">
+          <input name="lastName" type="text" class="form-control" placeholder="Last" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email" class="required-input">Email address</label>
+        <input type="email" class="form-control" name="email" placeholder="name@example.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="market-name-dropdown" class="required-input">Conduct market assessment for:</label>
+        <select class="form-control custom-select" id="market-name-dropdown" name="marketName" required>
+          <option disabled selected value>-- Select a market --</option>
+          {{#each markets}}
+            <option>{{name}}</option>
+          {{/each}}
+          <option>NEW MARKET</option>
+        </select>
+      </div>
+
+      <div id="new-market-input" class="d-none">
+
+        <div class="form-row">
+          <div class="form-group col-sm-7 col-md-8">
+            <label for="inputMarketName" class="required-input">Market name</label>
+            <input type="text" class="form-control" id="inputMarketName" name="marketName" required>
+          </div>
+          <div class="form-group col-sm-5 col-md-4">
+            <label for="store-type" class="required-input">Store type</label>
+            <select class="form-control custom-select" id="store-type" name="storeType" required>
+              <option disabled selected value>-- Select store type --</option>
+              <option>Convenience</option>
+              <option>Small</option>
+              <option>Medium</option>
+              <option>Large</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputAddress" class="required-input">Market address</label>
+          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address" required>
+        </div>
+        <!--
+        <div class="form-group">
+          <label for="inputAddress2">Market address 2</label>
+          <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" name="address2">
+        </div>
+        -->
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputCity" class="required-input">City</label>
+            <input type="text" class="form-control" id="inputCity" value="San Diego" name="city" required>
+          </div>
+          <div class="form-group col-md-2 col-4">
+            <label for="inputState" class="required-input">State</label>
+            <input type="text" class="form-control" id="inputState" value="CA" name="state" required>
+          </div>
+          <div class="form-group col-md-4 col-8">
+            <label for="inputZip" class="required-input">Zip</label>
+            <input type="text" class="form-control" id="inputZip" name="zip" required>
+          </div>
+        </div>
+
+      </div> <!-- /#new-market-input -->
+
+      <button type="submit" class="btn btn-primary">Start Assessment</button>
+
+    </form>
+  </div>
+</div> <!-- /#pre-assess-container -->
