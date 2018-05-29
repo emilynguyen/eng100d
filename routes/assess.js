@@ -15,7 +15,7 @@ exports.edit = function(req, res) {
 
 exports.save = function(req, res) {
   const newQuestions = req.body;
-  
+
   // Clear current questions
   questions.splice(0, questions.length);
 
@@ -23,4 +23,25 @@ exports.save = function(req, res) {
   for (let i = 0; i < newQuestions.length; i++) {
     questions.push(newQuestions[i]);
   }
+};
+
+exports.saveMarket = function(req, res) {
+  markets.push(req.body);
+  return;
+};
+
+exports.submit = function(req, res) {
+  const assessment = req.body.assessment;
+  const level = req.body.level;
+  const name = req.body.marketName;
+
+  for (let i = 0; i < markets.length; i++) {
+    // Find market
+    if (markets[i].name === name) {
+      markets[i].assessments.push(assessment);
+      markets[i].level = level;
+    }
+  }
+
+  console.log(markets);
 };

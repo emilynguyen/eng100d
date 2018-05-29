@@ -8280,7 +8280,7 @@ body {
   padding-top: calc(4.5rem + 4rem);
   padding-bottom: calc(4.5rem); }
   .container.main h2 {
-    padding-bottom: 2rem; }
+    padding-bottom: 1.8rem; }
 
 @font-face {
   font-family: 'Icons';
@@ -8295,6 +8295,9 @@ body {
 header {
   height: 4.5rem !important;
   max-height: 4.5rem; }
+
+#home-nav {
+  font-size: 1.2rem; }
 
 .logo {
   max-height: 100%;
@@ -8380,8 +8383,6 @@ input:checked + .slider:before {
     margin-left: auto;
     margin-right: auto;
     max-width: 45rem; }
-    #home-carousel .carousel-caption h1 {
-      font-size: 2.2rem; }
 
 .home-hero {
   height: calc(100vh - 4.5rem);

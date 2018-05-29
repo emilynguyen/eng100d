@@ -1,4 +1,8 @@
 const $assessment = $('#assessment-form');
+let firstName;
+let lastName;
+let email;
+let marketName;
 
 function submitPreAssess() {
 	$('#pre-assess-container').animate({top: -200, opacity: 0}, 500, function() {
@@ -10,15 +14,36 @@ function submitPreAssess() {
 	const info = $('#pre-assess-form').serializeArray();
 	console.log(info);
 
-	let marketName;
+	firstName = info[0].value;
+	lastName = info[1].value;
+	email = info[2].value;
+	marketName = info[3].value;
 
-	// If not a new market
-	if (info.length === 4) {
-		marketName = info[3].value;
-	}
-	else {
+	// If new market, push new market to database
+	if (marketName === 'NEW MARKET') {
 		marketName = info[4].value;
+
+		const newMarket = {
+			"name": marketName,
+			"address": {
+				"address": info[6].value,
+				"city": info[7].value,
+				"state": info[8].value,
+				"zip": info[9].value
+			},
+			"storeType": info[5].value,
+			"level": "0",
+			"assessments": []
+		};
+
+		$.ajax({
+	    type: 'POST',
+	    url: '/assess-save-market',
+	    contentType: 'application/json',
+	    data: JSON.stringify(newMarket)
+	  });
 	}
+
 	$('#market-name').text(": " + marketName).fadeIn(500);
 }
 
@@ -57,15 +82,49 @@ function calcLevel() {
 	console.log("Level 2: " + level2);
 	console.log("Level 3: " + level3);
 	console.log(maxLevel);
+
+	return 0;
 }
 
 function submitAssessment() {
 
-	calcLevel();
+	let level = calcLevel();
 
   console.log('Submitted');
   alert("Your assessment has been submitted.");
-	console.log($assessment.serializeArray());
+
+	const answers = $assessment.serializeArray();
+	console.log(answers);
+
+	const assessment = {
+		"evaluator": {
+			"first": firstName,
+			"last": lastName,
+			"email": email,
+			"time": new Date().getTime()
+		},
+		"answers": []
+	};
+	for (let i = 0; i < answers.length; i++) {
+		assessment['answers'].push({
+			"q": answers[i].name,
+			"a": answers[i].value
+		});
+	}
+
+	const submission = {
+		"marketName": marketName,
+		"level": level,
+		"assessment": assessment
+	}
+
+	$.ajax({
+		type: 'POST',
+		url: '/assess-submit',
+		contentType: 'application/json',
+		data: JSON.stringify(submission),
+	});
+
   //window.location.href = "/assess";
 }
 
@@ -97,7 +156,7 @@ $(document).ready(function() {
  */
 $(document).on('change', '#market-name-dropdown', function() {
 
-  if ($(this).val() === "New Market")
+  if ($(this).val() === "NEW MARKET")
   	toggleNewMarket(true);
   else
   	toggleNewMarket(false);
