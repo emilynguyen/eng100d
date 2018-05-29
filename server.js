@@ -14,6 +14,10 @@ var signup = require("./routes/signup");
 var markets = require("./routes/markets");
 var data = require("./routes/data");
 
+// Database
+const sqlite3 = require('sqlite3');
+const assessments = new sqlite3.Database('assessment.db');
+
 var app = express();
 
 var hbs = exphbs.create({
@@ -43,6 +47,25 @@ app.get("/admin", admin.view);
 app.get("/signup", signup.view);
 app.get("/markets", markets.view);
 app.get("/data", data.view);
+
+//CREATING GET/POST REQUESTS FOR MARKET DATA
+//Request to grab a specific market's assessment
+app.get('/market/:name', (req, res) =>{
+  const marketSearch = req.params.name;
+  assessments.all('SELECT * FROM assessmentTable WHERE name = $name',
+    {$name: marketSearch},
+    (err, rows) => {
+      if(rows.length > 0){
+        res.send(rows[0]);
+      }else{
+        res.send({});
+      }
+  });
+});
+
+app.post('/assess', (req, res)=>{
+  //testing
+});
 
 app.listen(process.env.PORT || 3000, function() {
   console.log("Express server listening on port " + app.get("port"));

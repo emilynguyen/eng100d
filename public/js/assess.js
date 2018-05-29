@@ -2,7 +2,7 @@
 function submitPreAssess() {
 	$('#pre-assess-container').animate({top: -200, opacity: 0}, 500, function() {
 		$('#pre-assess-container').hide();
-		$('#assessment-form').removeClass('d-none');	
+		$('#assessment-form').removeClass('d-none');
 		$('#assessment-form').animate({opacity: 1}, 500);
 	});
 
@@ -22,7 +22,21 @@ function submitPreAssess() {
 }
 
 function submitAssessment() {
-  console.log('Submitted');
+	$.ajax({
+		type: 'GET',
+		url:'/assess',
+		dataType: 'json',
+		success: (data) =>{
+			console.log("Thanks it worked");
+		},
+		error: ()=>{
+			alert('error saving assessment');
+		}
+	});
+	const testing = $('#assessment-form').serializeArray();
+	for(let x=0; x<testing.length; x++){
+		console.log(testing[x]);
+	}
   alert("Your assessment has been submitted.");
   window.location.href = "/assess";
 }
@@ -42,7 +56,7 @@ $(document).ready(function() {
 	// DEV ONLY
 	//$('body').find(':input').prop('required', false);
 	$('#market-name').hide();
-	$('#assessment-form').css('opacity', 0);	
+	$('#assessment-form').css('opacity', 0);
 
 	// Disable new market fields by default
 	$('#new-market-input').find(':input').prop('disabled', true);
@@ -54,7 +68,7 @@ $(document).ready(function() {
  * Listener for market dropdown
  */
 $(document).on('change', '#market-name-dropdown', function() {
-  
+
   if ($(this).val() === "New Market")
   	toggleNewMarket(true);
   else
