@@ -1,3 +1,25 @@
+
 <div class="container main">
 
+
+<table style="width:100%">
+  <tr>
+    <th>Market Name</th>
+    <th>Store Type</th> 
+    <th>Date of Visit</th>
+    <th>Zip Code</th>
+    <th>Level</th>
+  </tr>
+
+{{#each markets}}
+  <tr>
+    <td>{{name}}</td>
+    <td>{{type}}</td>
+    <td>{{date}}</td>
+    <td>{{zipcode}}</td>
+    <td>{{level}}</td>
+  </tr>
+{{/each}}
+
+</table>
 </div>
