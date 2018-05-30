@@ -43,5 +43,5 @@ exports.submit = function(req, res) {
     }
   }
 
-  console.log(markets);
+  console.log(assessment);
 };
