@@ -45,6 +45,8 @@ app.get("/assess-edit", assess.edit);
 app.post("/assess-save", assess.save);
 app.post("/assess-save-market", assess.saveMarket);
 app.post("/assess-submit", assess.submit);
+app.get("/admin-login", admin.loginView);
+app.get("/admin-login-verify", admin.loginVerify);
 app.get("/admin", admin.view);
 app.get("/signup", signup.view);
 app.get("/markets", markets.view);

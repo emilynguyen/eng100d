@@ -8444,3 +8444,7 @@ textarea {
 
 .required {
   cursor: pointer; }
+
+.admin-login {
+  width: 100%;
+  max-width: 20rem; }
