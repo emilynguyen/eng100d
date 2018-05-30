@@ -9,7 +9,34 @@
 		},
 		"storeType": "Small",
 		"level": "0",
-		"assessments": []
+		"assessments": [
+			{
+				"evaluator": {
+					"first": "Emily",
+					"last": "Nguyen",
+					"email": "emnguyen315@gmail.com",
+					"time": 1527639905188
+				},
+				"answers": [
+					{
+						"q": "Are there tobacco products for sale in the market (including electronic smoking devices, but not including rolling papers)?",
+       			"a": "No"
+					},
+					{
+						"q": "Does the market sell alcohol?",
+						"a": "Yes"
+					},
+					{
+						"q": "Does the market sell single-serve alcoholic beverages?",
+						"a": "Yes"
+					},
+					{
+						"q": "Are alcohol products easily accessible to minors?",
+						"a": "No"
+					}
+				]
+			}
+		]
 	},
 	{
 		"name": "Balboa International Market",
