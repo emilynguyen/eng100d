@@ -68,7 +68,17 @@ app.get('/markets/:name', (req, res) =>{
 });
 
 app.post('/data/:name', (req, res)=>{
-  res.send('POST REQUEST');
+  const marketSearch = req.params.name;
+  console.log(req.body.testing);
+  assessments.all('SELECT * FROM assessmentTable WHERE name = $name',
+  {$name: marketSearch},
+  (err, rows) => {
+    if(rows.length > 0){
+      res.send("This market already has a database.");
+    }else{
+      res.send("Assessment was successfully saved");
+    }
+  });
 });
 
 app.listen(process.env.PORT || 3000, function() {
