@@ -53,8 +53,8 @@ app.get("/markets", markets.view);
 app.get("/data", data.view);
 
 //CREATING GET/POST REQUESTS FOR MARKET DATA
-//Request to grab a specific market's assessment
-app.get('/market/:name', (req, res) =>{
+
+app.get('/markets/:name', (req, res) =>{
   const marketSearch = req.params.name;
   assessments.all('SELECT * FROM assessmentTable WHERE name = $name',
     {$name: marketSearch},
@@ -67,8 +67,8 @@ app.get('/market/:name', (req, res) =>{
   });
 });
 
-app.post('/assess', (req, res)=>{
-  //testing
+app.post('/data/:name', (req, res)=>{
+  res.send('POST REQUEST');
 });
 
 app.listen(process.env.PORT || 3000, function() {
