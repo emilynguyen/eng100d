@@ -53,7 +53,7 @@ app.get("/markets", markets.view);
 app.get("/data", data.view);
 
 //CREATING GET/POST REQUESTS FOR MARKET DATA
-
+//Grabs a specific market and its information/assessment
 app.get('/markets/:name', (req, res) =>{
   const marketSearch = req.params.name;
   assessments.all('SELECT * FROM assessmentTable WHERE name = $name',
@@ -67,15 +67,17 @@ app.get('/markets/:name', (req, res) =>{
   });
 });
 
-app.post('/data/:name', (req, res)=>{
+//Creates a new market assessment
+app.post('/data', (req, res)=>{
   const marketSearch = req.params.name;
-  console.log(req.body.testing);
+  const testMarket = req.body.testing;
   assessments.all('SELECT * FROM assessmentTable WHERE name = $name',
-  {$name: marketSearch},
+  {$name: testMarket},
   (err, rows) => {
     if(rows.length > 0){
       res.send("This market already has a database.");
     }else{
+      assessments.run('INSERT INTO assessmentTable(name) VALUES(?)', testMarket);
       res.send("Assessment was successfully saved");
     }
   });

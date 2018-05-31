@@ -4,7 +4,7 @@
 
   {{> pre-assess}}
 
-  <form id="assessment-form" class="d-none" onsubmit="submitAssessment(); return false;">
+  <form id="assessment-form" class="d-none" action="/assess" method="POST" onsubmit="submitAssessment(); return false;">
 
     <ol id="assessment-q-list">
     {{#each questions}}
