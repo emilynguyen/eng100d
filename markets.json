@@ -1,53 +1,197 @@
 [
-	{
-		"name": "African Caribbean Food Market",
-		"address": {
-			"address": "4811 El Cajon Blvd",
-			"city": "San Diego",
-			"state": "CA",
-			"zip": "92115"
+		{
+			"name": "African Caribbean Food Market",
+			"address": {
+				"address": "4811 El Cajon Blvd",
+				"city": "San Diego",
+				"state": "CA",
+				"zip": "92115"
+			},
+			"storeType": "Small",
+			"level": "0",
+			"assessments": [
+				{
+					"evaluator": {
+						"first": "Emily",
+						"last": "Nguyen",
+						"email": "emnguyen315@gmail.com",
+						"time": 1527639905188
+					},
+					"answers": [
+						{
+							"q": "Are there tobacco products for sale in the market (including electronic smoking devices, but not including rolling papers)?",
+							"a": "No"
+						},
+						{
+							"q": "Does the market sell alcohol?",
+							"a": "Yes"
+						},
+						{
+							"q": "Does the market sell single-serve alcoholic beverages?",
+							"a": "Yes"
+						},
+						{
+							"q": "Are alcohol products easily accessible to minors?",
+							"a": "No"
+						}
+					]
+				}
+			]
 		},
-		"storeType": "Small",
-		"level": "0",
-		"assessments": [
-			{
-				"evaluator": {
-					"first": "Emily",
-					"last": "Nguyen",
-					"email": "emnguyen315@gmail.com",
-					"time": 1527639905188
-				},
-				"answers": [
-					{
-						"q": "Are there tobacco products for sale in the market (including electronic smoking devices, but not including rolling papers)?",
-       			"a": "No"
+		{
+			"name": "Balboa International Market",
+			"address": {
+				"address": "5905 Balboa Ave",
+				"city": "San Diego",
+				"state": "CA",
+				"zip": "92111"
+			},
+			"storeType": "Medium",
+			"level": "2",
+			"assessments": [
+				{
+					"evaluator": {
+						"first": "Emily",
+						"last": "Nguyen",
+						"email": "emnguyen315@gmail.com",
+						"time": 1527639905188
 					},
-					{
-						"q": "Does the market sell alcohol?",
-						"a": "Yes"
-					},
-					{
-						"q": "Does the market sell single-serve alcoholic beverages?",
-						"a": "Yes"
-					},
-					{
-						"q": "Are alcohol products easily accessible to minors?",
-						"a": "No"
-					}
-				]
-			}
-		]
-	},
-	{
-		"name": "Balboa International Market",
-		"address": {
-			"address": "5905 Balboa Ave",
-			"city": "San Diego",
-			"state": "CA",
-			"zip": "92111"
+					"answers": [
+						{
+							"q": "Are there tobacco products for sale in the market (including electronic smoking devices, but not including rolling papers)?",
+							"a": "No"
+						},
+						{
+							"q": "Does the market sell alcohol?",
+							"a": "Yes"
+						},
+						{
+							"q": "Does the market sell single-serve alcoholic beverages?",
+							"a": "Yes"
+						},
+						{
+							"q": "Are alcohol products easily accessible to minors?",
+							"a": "No"
+						}
+					]
+				}
+			]
 		},
-		"storeType": "Large",
-		"level": "2",
-		"assessments": []
-	}
-]
+		{
+			"name": "Clairemont Store",
+			"address": {
+				"address": "4811 El Cajon Blvd",
+				"city": "San Diego",
+				"state": "CA",
+				"zip": "84053"
+			},
+			"storeType": "Large",
+			"level": "3",
+			"assessments": [
+				{
+					"evaluator": {
+						"first": "Emily",
+						"last": "Nguyen",
+						"email": "emnguyen315@gmail.com",
+						"time": 1527639905188
+					},
+					"answers": [
+						{
+							"q": "Are there tobacco products for sale in the market (including electronic smoking devices, but not including rolling papers)?",
+							"a": "No"
+						},
+						{
+							"q": "Does the market sell alcohol?",
+							"a": "Yes"
+						},
+						{
+							"q": "Does the market sell single-serve alcoholic beverages?",
+							"a": "Yes"
+						},
+						{
+							"q": "Are alcohol products easily accessible to minors?",
+							"a": "No"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Goody's Market",
+			"address": {
+				"address": "4811 El Cajon Blvd",
+				"city": "San Diego",
+				"state": "CA",
+				"zip": "92345"
+			},
+			"storeType": "Convenience",
+			"level": "1",
+			"assessments": [
+				{
+					"evaluator": {
+						"first": "Emily",
+						"last": "Nguyen",
+						"email": "emnguyen315@gmail.com",
+						"time": 1527639905188
+					},
+					"answers": [
+						{
+							"q": "Are there tobacco products for sale in the market (including electronic smoking devices, but not including rolling papers)?",
+							"a": "No"
+						},
+						{
+							"q": "Does the market sell alcohol?",
+							"a": "Yes"
+						},
+						{
+							"q": "Does the market sell single-serve alcoholic beverages?",
+							"a": "Yes"
+						},
+						{
+							"q": "Are alcohol products easily accessible to minors?",
+							"a": "No"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Dining Hall",
+			"address": {
+				"address": "4811 El Cajon Blvd",
+				"city": "San Diego",
+				"state": "CA",
+				"zip": "91109"
+			},
+			"storeType": "Small",
+			"level": "2",
+			"assessments": [
+				{
+					"evaluator": {
+						"first": "Emily",
+						"last": "Nguyen",
+						"email": "emnguyen315@gmail.com",
+						"time": 1527639905188
+					},
+					"answers": [
+						{
+							"q": "Are there tobacco products for sale in the market (including electronic smoking devices, but not including rolling papers)?",
+							"a": "No"
+						},
+						{
+							"q": "Does the market sell alcohol?",
+							"a": "Yes"
+						},
+						{
+							"q": "Does the market sell single-serve alcoholic beverages?",
+							"a": "Yes"
+						},
+						{
+							"q": "Are alcohol products easily accessible to minors?",
+							"a": "No"
+						}
+					]
+				}
+			]
+		}
+	]
