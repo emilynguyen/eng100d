@@ -40,10 +40,12 @@ function submitPreAssess() {
 	    type: 'POST',
 	    url: '/assess-save-market',
 	    contentType: 'application/json',
-	    data: JSON.stringify(newMarket)
+	    data: JSON.stringify(newMarket),
+			success: (data) =>{
+				console.log("In the post request: " + data);
+			},
 	  });
 	}
-
 	$('#market-name').text(": " + marketName).fadeIn(500);
 }
 
