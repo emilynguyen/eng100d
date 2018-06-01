@@ -58,15 +58,33 @@ app.get("/data", data.view);
 
 //POST request for pre-assessment
 app.post('/assess-save-market', (req, res) => {
-  console.log("THIS IS WORKING");
+  assessments.all('SELECT * FROM assessmentTable WHERE name = test',
+    {$name: marketSearch},
+    (err, rows) => {
+      if(rows.length > 0){
+        res.send(rows[0]);
+      }else{
+        res.send({});
+      }
+  });
 });
 
-/*
+
 //POST request for assessments
-app.post('/assess', (req, res) =>{
-
+app.post('/assess/:name', (req, res) =>{
+  const marketSearch = req.params.name;
+  assessments.all('SELECT * FROM assessmentTable WHERE name = $name',
+    {$name: marketSearch},
+    (err, rows) => {
+      if(rows.length > 0){
+        console.log("POST WORKED");
+        //res.send(rows[0]);
+      }else{
+        res.send({});
+      }
+  });
 });
-*/
+
 
 //GET Request for a specific market
 app.get('/markets/:name', (req, res) =>{
@@ -75,7 +93,8 @@ app.get('/markets/:name', (req, res) =>{
     {$name: marketSearch},
     (err, rows) => {
       if(rows.length > 0){
-        res.send(rows[0]);
+        console.log("POST WORKED");
+        //res.send(rows[0]);
       }else{
         res.send({});
       }
