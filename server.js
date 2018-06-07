@@ -43,46 +43,30 @@ app.get("/", home.view);
 app.get("/assess", assess.view);
 app.get("/assess-edit", assess.edit);
 app.post("/assess-save", assess.save);
-app.post("/assess-save-market", assess.saveMarket);
-app.post("/assess-submit", assess.submit);
+//app.post("/assess-save-market", assess.saveMarket);
+//app.post("/assess-submit", assess.submit);
 app.get("/admin-login", admin.loginView);
 app.get("/admin-login-verify", admin.loginVerify);
 app.get("/admin", admin.view);
 app.get("/signup", signup.view);
 app.get("/markets", markets.view);
-app.get("/data", data.view);
-
-//CREATING GET/POST REQUESTS FOR MARKET DATA
-//Grabs a specific market and its information/assessment
+//app.get("/data", data.view);
 
 
 //POST request for pre-assessment
+/*
 app.post('/assess-save-market', (req, res) => {
-  assessments.all('SELECT * FROM assessmentTable WHERE name = test',
-    {$name: marketSearch},
-    (err, rows) => {
-      if(rows.length > 0){
-        res.send(rows[0]);
-      }else{
-        res.send({});
-      }
-  });
+  assessments.run("INSERT INTO assessmentTable(firstName, lastName, marketName, email)  VALUES(?,?,?,?)",
+  req.body.firstName, req.body.lastName, req.body.marketName, req.body.email);
+  res.send("FINISHED preassessment for " + req.body.marketName);
 });
-
-
-//POST request for assessments
-app.post('/assess/:name', (req, res) =>{
-  const marketSearch = req.params.name;
-  assessments.all('SELECT * FROM assessmentTable WHERE name = $name',
-    {$name: marketSearch},
-    (err, rows) => {
-      if(rows.length > 0){
-        console.log("POST WORKED");
-        //res.send(rows[0]);
-      }else{
-        res.send({});
-      }
-  });
+*/
+//POST request for full assessment
+app.post('/assess-submit', (req, res) => {
+  console.log(req.body);
+  assessments.run("INSERT INTO assessmentTable(firstName, lastName, marketName, email, level, assessment) VALUES(?,?,?,?,?,?)",
+  req.body['evaluator[first]'], req.body['evaluator[last]'], req.body.marketName, req.body['evaluator[email]'], req.body.level, req.body.answers);
+  res.send("Completed Assessment");
 });
 
 
@@ -93,25 +77,26 @@ app.get('/markets/:name', (req, res) =>{
     {$name: marketSearch},
     (err, rows) => {
       if(rows.length > 0){
-        console.log("POST WORKED");
-        //res.send(rows[0]);
+        res.send(rows[0]);
       }else{
         res.send({});
       }
   });
 });
 
-//Creates a new market assessment
+//TEST POST REQUEST
 app.post('/data', (req, res)=>{
-  const testMarket = req.body.testing;
+  const testMarket = req.body.name;
+  console.log("BODY: " + req.body.pass);
+  console.log("TEST MARKET: " + testMarket);
   assessments.all('SELECT * FROM assessmentTable WHERE name = $name',
   {$name: testMarket},
   (err, rows) => {
     if(rows.length > 0){
-      res.send("This market already has a database.");
+      res.send(testMarket + " already has a database.");
     }else{
       assessments.run('INSERT INTO assessmentTable(name) VALUES(?)', testMarket);
-      res.send("Assessment was successfully saved");
+      res.send("Assessment was successfully saved for " + testMarket);
     }
   });
 });

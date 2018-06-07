@@ -4,6 +4,19 @@ let lastName;
 let email;
 let marketName;
 
+/*
+function submitData(){
+	$.ajax({
+		type: "POST",
+		url: '/data',
+		dataType: 'text',
+		data: {name: $('#inputField').val(), pass: "something"},
+		success: (result) => {
+			console.log(result);
+		},
+	});
+}
+*/
 function submitPreAssess() {
 	$('#pre-assess-container').animate({top: -200, opacity: 0}, 500, function() {
 		$('#pre-assess-container').hide();
@@ -36,15 +49,18 @@ function submitPreAssess() {
 			"assessments": []
 		};
 	}
-	$('#market-name').text(": " + marketName).fadeIn(500);
+/*
 	$.ajax({
 		type: "POST",
 		url: '/assess-save-market',
-		dataType: 'json',
-		success: (data) => {
-
+		dataType: 'text',
+		data: {firstName: firstName, lastName:lastName, email:email, marketName:marketName},
+		success: (result) => {
+			console.log(result);
 		},
 	});
+*/
+	$('#market-name').text(": " + marketName).fadeIn(500);
 }
 
 function calcLevel() {
@@ -117,22 +133,17 @@ function submitAssessment() {
 		"level": level,
 		"assessment": assessment
 	}
-/*
+	console.log(assessment);
+	console.log(submission);
 	$.ajax({
 		type: 'POST',
 		url: '/assess-submit',
-		contentType: 'application/json',
-		data: JSON.stringify(submission),
-	});
-	*/
-	$.ajax({
-		type: 'POST',
-		url: '/assess-save-market',
-		data: JSON.stringify(submission),
-		success: (data) =>{
-			console.log("test");
+		data: {answers:JSON.stringify(answers), evaluator:assessment['evaluator'], marketName: submission['marketName'], level: submission['level']},
+		success: (results) => {
+			console.log(results);
 		},
 	});
+
   //window.location.href = "/assess";
 }
 

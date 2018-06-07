@@ -1,10 +1,22 @@
 <div class="container main">
-
+  <!--
+  <div class="container">
+    <form id="testing-form" onsubmit="submitData(); return false;">
+      <label> Do Something</label>
+      <input name="testing" id="inputField">
+      </input>
+      <div>
+        <button> Submit</button>
+      </div>
+    </form>
+  </div>
+  <div id="results">
+  </div>
   <h2>Market Assessment<span id="market-name"></span></h2>
-
+-->
   {{> pre-assess}}
 
-  <form id="assessment-form" class="d-none" action="/assess/test" method="POST" onsubmit="submitAssessment(); return false;">
+  <form id="assessment-form" class="d-none" onsubmit="submitAssessment(); return false;">
 
     <ol id="assessment-q-list">
     {{#each questions}}

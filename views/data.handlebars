@@ -1,5 +1,5 @@
 <div class="container main">
-  <form id="testing-form" action="/data" method="POST">
+  <form id="testing-form" onsubmit="submitData(); return false">
     <label> Do Something</label>
     <input name="testing">
     </input>
@@ -7,4 +7,6 @@
       <button> Submit</button>
     </div>
   </form>
+</div>
+<div id="results">
 </div>
