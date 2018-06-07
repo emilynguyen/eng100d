@@ -35,16 +35,16 @@ function submitPreAssess() {
 			"level": "0",
 			"assessments": []
 		};
-
-		$.ajax({
-	    type: 'POST',
-	    url: '/assess-save-market',
-	    contentType: 'application/json',
-	    data: JSON.stringify(newMarket)
-	  });
 	}
-
 	$('#market-name').text(": " + marketName).fadeIn(500);
+	$.ajax({
+		type: "POST",
+		url: '/assess-save-market',
+		dataType: 'json',
+		success: (data) => {
+
+		},
+	});
 }
 
 function calcLevel() {
@@ -117,14 +117,22 @@ function submitAssessment() {
 		"level": level,
 		"assessment": assessment
 	}
-
+/*
 	$.ajax({
 		type: 'POST',
 		url: '/assess-submit',
 		contentType: 'application/json',
 		data: JSON.stringify(submission),
 	});
-
+	*/
+	$.ajax({
+		type: 'POST',
+		url: '/assess-save-market',
+		data: JSON.stringify(submission),
+		success: (data) =>{
+			console.log("test");
+		},
+	});
   //window.location.href = "/assess";
 }
 
