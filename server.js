@@ -73,7 +73,7 @@ app.post('/assess-submit', (req, res) => {
 //GET Request for a specific market
 app.get('/markets/:name', (req, res) =>{
   const marketSearch = req.params.name;
-  assessments.all('SELECT * FROM assessmentTable WHERE name = $name',
+  assessments.all('SELECT * FROM assessmentTable WHERE marketName = $name',
     {$name: marketSearch},
     (err, rows) => {
       if(rows.length > 0){
@@ -81,6 +81,17 @@ app.get('/markets/:name', (req, res) =>{
       }else{
         res.send({});
       }
+  });
+});
+
+//GET Request for all markets
+app.get('/markets', (req,res) => {
+  assesments.all('SELECT firstName, lastName, marketName, email, level FROM assessmentTable', (err,rows) =>{
+    if(rows.length > 0){
+      res.send(rows);
+    }else{
+      res.send("There are no markets currently in the database");
+    }
   });
 });
 
