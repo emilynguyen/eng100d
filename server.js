@@ -64,16 +64,21 @@ app.post('/assess-save-market', (req, res) => {
 //POST request for full assessment
 app.post('/assess-submit', (req, res) => {
   console.log(req.body);
+  assessments.run("INSERT INTO assessmentTable(name) VALUES(?)", req.body.everything);
+  //assessments.run("INSERT INTO assessmentTable(name, address) VALUES(?,?)", req.body.assessment, req.body.submission);
+  /*
   assessments.run("INSERT INTO assessmentTable(firstName, lastName, marketName, email, level, assessment) VALUES(?,?,?,?,?,?)",
   req.body['evaluator[first]'], req.body['evaluator[last]'], req.body.marketName, req.body['evaluator[email]'], req.body.level, req.body.answers);
+  */
   res.send("Completed Assessment");
+
 });
 
 
 //GET Request for a specific market
 app.get('/markets/:name', (req, res) =>{
   const marketSearch = req.params.name;
-  assessments.all('SELECT * FROM assessmentTable WHERE marketName = $name',
+  assessments.all('SELECT * FROM assessmentTable WHERE marketName like $name',
     {$name: marketSearch},
     (err, rows) => {
       if(rows.length > 0){
@@ -85,10 +90,10 @@ app.get('/markets/:name', (req, res) =>{
 });
 
 //GET Request for all markets
-app.get('/markets', (req,res) => {
-  assesments.all('SELECT firstName, lastName, marketName, email, level FROM assessmentTable', (err,rows) =>{
+app.get('/marketss', (req,res) => {
+  assessments.all('SELECT * FROM assessmentTable', (err,rows) =>{
     if(rows.length > 0){
-      res.send(rows);
+      res.send(JSON.parse(rows[0].name));
     }else{
       res.send("There are no markets currently in the database");
     }
