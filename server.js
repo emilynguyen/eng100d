@@ -50,7 +50,7 @@ app.get("/admin-login-verify", admin.loginVerify);
 app.get("/admin", admin.view);
 app.get("/signup", signup.view);
 app.get("/markets", markets.view);
-//app.get("/data", data.view);
+app.get("/data", data.view);
 
 
 //POST request for pre-assessment
