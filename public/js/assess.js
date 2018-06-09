@@ -3,20 +3,9 @@ let firstName;
 let lastName;
 let email;
 let marketName;
+let addressInfo;
+let storeType;
 
-/*
-function submitData(){
-	$.ajax({
-		type: "POST",
-		url: '/data',
-		dataType: 'text',
-		data: {name: $('#inputField').val(), pass: "something"},
-		success: (result) => {
-			console.log(result);
-		},
-	});
-}
-*/
 function submitPreAssess() {
 	$('#pre-assess-container').animate({top: -200, opacity: 0}, 500, function() {
 		$('#pre-assess-container').hide();
@@ -25,7 +14,7 @@ function submitPreAssess() {
 	});
 
 	const info = $('#pre-assess-form').serializeArray();
-	console.log(info);
+	//console.log(info);
 
 	firstName = info[0].value;
 	lastName = info[1].value;
@@ -49,6 +38,14 @@ function submitPreAssess() {
 			"assessments": []
 		};
 	}
+
+	addressInfo = {
+		"address": "4811 El Cajon Blvd",
+		"city": "San Diego",
+		"state": "CA",
+		"zip": "92115"
+	};
+	storeType = "Small";
 /*
 	$.ajax({
 		type: "POST",
@@ -132,15 +129,34 @@ function submitAssessment() {
 		"marketName": marketName,
 		"level": level,
 		"assessment": assessment
-	}
-	console.log(assessment);
-	console.log(submission);
+	};
+
+	const testing = {
+		"name": marketName,
+		"address": addressInfo,
+		"storeType": storeType,
+		"level": level,
+		"assessment": assessment
+	};
+/*
 	$.ajax({
 		type: 'POST',
 		url: '/assess-submit',
 		data: {answers:JSON.stringify(answers), evaluator:assessment['evaluator'], marketName: submission['marketName'], level: submission['level']},
 		success: (results) => {
 			console.log(results);
+		},
+	});
+	*/
+
+
+	$.ajax({
+		type: 'POST',
+		url: '/assess-submit',
+		data:{everything: JSON.stringify(testing)},
+		//data:{assessment:JSON.stringify(assessment), submission:JSON.stringify(submission)},
+		success: (results) => {
+			console.log("Results: " + results);
 		},
 	});
 
