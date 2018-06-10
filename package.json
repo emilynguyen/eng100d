@@ -25,7 +25,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "NODE_ENV=production node server.js",
+    "start:dev": "NODE_ENV=development gulp"
   },
   "keywords": [],
   "author": "",

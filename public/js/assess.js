@@ -229,7 +229,6 @@ $(document).ready(function() {
 });
 
 
-
 /*
  * Listener for market dropdown
  */
@@ -239,4 +238,11 @@ $(document).on('change', '#market-name-dropdown', function() {
   	toggleNewMarket(true);
   else
   	toggleNewMarket(false);
+});
+
+/*
+ * Listener for assessment passcode
+ */
+$('.assess-code-input').on('input', function() {
+ $('.assess-code-input').removeClass('incorrect-passcode');
 });

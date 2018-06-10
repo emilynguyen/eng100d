@@ -1,6 +1,10 @@
 'use strict';
 
-require('dotenv').config();
+const isDev = process.env.NODE_ENV === 'development';
+
+if (isDev) {
+  require('dotenv').config();
+}
 
 var express = require('express'),
     exphbs  = require('express-handlebars'); // "express-handlebars"

@@ -33,6 +33,7 @@ exports.verifyCode = function(req, res) {
   if (code !== process.env.ASSESS_CODE) {
     console.log('Incorrect passcode');
     res.send(false);
+    return;
   }
   console.log('Correct passcode');
   res.send(true);
