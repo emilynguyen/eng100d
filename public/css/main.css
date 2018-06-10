@@ -6003,7 +6003,7 @@ button.bg-dark:focus {
 .bg-transparent {
   background-color: transparent !important; }
 
-.border {
+.border, .incorrect-passcode {
   border: 1px solid #dee2e6 !important; }
 
 .border-top {
@@ -6048,7 +6048,7 @@ button.bg-dark:focus {
 .border-warning {
   border-color: #ffc107 !important; }
 
-.border-danger {
+.border-danger, .incorrect-passcode {
   border-color: #dc3545 !important; }
 
 .border-light {
@@ -8167,10 +8167,28 @@ a.text-info:hover, a.text-info:focus {
 a.text-warning:hover, a.text-warning:focus {
   color: #d39e00 !important; }
 
-.text-danger {
+.text-danger, .incorrect-passcode::-webkit-input-placeholder {
   color: #dc3545 !important; }
 
-a.text-danger:hover, a.text-danger:focus {
+.text-danger, .incorrect-passcode:-ms-input-placeholder {
+  color: #dc3545 !important; }
+
+.text-danger, .incorrect-passcode::-ms-input-placeholder {
+  color: #dc3545 !important; }
+
+.text-danger, .incorrect-passcode::placeholder {
+  color: #dc3545 !important; }
+
+a.text-danger:hover, a.incorrect-passcode:hover::-webkit-input-placeholder, a.text-danger:focus, a.incorrect-passcode:focus::-webkit-input-placeholder {
+  color: #bd2130 !important; }
+
+a.text-danger:hover, a.incorrect-passcode:hover:-ms-input-placeholder, a.text-danger:focus, a.incorrect-passcode:focus:-ms-input-placeholder {
+  color: #bd2130 !important; }
+
+a.text-danger:hover, a.incorrect-passcode:hover::-ms-input-placeholder, a.text-danger:focus, a.incorrect-passcode:focus::-ms-input-placeholder {
+  color: #bd2130 !important; }
+
+a.text-danger:hover, a.incorrect-passcode:hover::placeholder, a.text-danger:focus, a.incorrect-passcode:focus::placeholder {
   color: #bd2130 !important; }
 
 .text-light {

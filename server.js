@@ -1,5 +1,7 @@
 'use strict';
 
+require('dotenv').config();
+
 var express = require('express'),
     exphbs  = require('express-handlebars'); // "express-handlebars"
 var http = require("http");
@@ -8,6 +10,14 @@ var bodyParser = require('body-parser')
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var session = require('express-session');
+
+/*
+const isDev = process.env.NODE_ENV === 'development';
+
+if (isDev) {
+  require('dotenv').load(); // eslint-disable-line
+}
+*/
 
 // Routes
 var home = require("./routes/home");
@@ -57,7 +67,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-//setting up global isAunthenticted var 
+//setting up global isAunthenticted var
 app.use(function(req , res, next){
   res.locals.isAuthenticated = req.isAuthenticated()
   next();
@@ -67,9 +77,10 @@ app.get("/", home.view);
 app.get("/assess", assess.view);
 app.get("/assess-edit", authenticationMiddleware(), assess.edit);
 app.post("/assess-save", authenticationMiddleware(), assess.save);
-//app.post("/assess-save-market", assess.saveMarket); 
+app.post("/assess-verify-code", assess.verifyCode);
+//app.post("/assess-save-market", assess.saveMarket);
 //app.post("/assess-submit", assess.submit);
-app.get("/admin-login", admin.loginView); 
+app.get("/admin-login", admin.loginView);
 app.get("/admin-login-verify", admin.loginVerify);
 app.get("/admin",authenticationMiddleware(), admin.view);
 app.get("/signup", signup.view);
@@ -119,7 +130,7 @@ passport.deserializeUser(function(id, done) {
 });
 
 //function that check if user was logged in
-function authenticationMiddleware () {  
+function authenticationMiddleware () {
   return (req, res, next) => {
       if (req.isAuthenticated()) return next();
       res.redirect('/admin-login')

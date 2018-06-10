@@ -6,6 +6,8 @@ var markets = require('../markets.json');
 var questions = require('../questions.json');
 
 exports.view = function(req, res) {
-    res.render('data', { markets, questions 
-    });
-}; 
+    res.render('data', {
+      markets, questions,
+      title: "Market Data | LWCMP Tool"
+  });
+};

@@ -7,11 +7,7 @@ let addressInfo;
 let storeType;
 
 function submitPreAssess() {
-	$('#pre-assess-container').animate({top: -200, opacity: 0}, 500, function() {
-		$('#pre-assess-container').hide();
-		$('#assessment-form').removeClass('d-none');
-		$('#assessment-form').animate({opacity: 1}, 500);
-	});
+
 
 	const info = $('#pre-assess-form').serializeArray();
 	//console.log(info);
@@ -19,9 +15,65 @@ function submitPreAssess() {
 	firstName = info[0].value;
 	lastName = info[1].value;
 	email = info[2].value;
-	marketName = info[3].value;
+	const code = info[3].value;
+	marketName = info[4].value;
+
+	// Check for passcode
+	//console.log(process.env.ASSESS_CODE);
+	//return;
+
+
+	$.ajax({
+		type: "POST",
+		url: '/assess-verify-code',
+		data: {code: code},
+		success: function(data) {
+			console.log(data);
+			if (!data) {
+				console.log('Incorrect data');
+				// Display incorrect passcode error
+				$('.assess-code-input').val("");
+				$('.assess-code-input').attr("placeholder", "Incorrect passcode");
+				$('.assess-code-input').addClass('incorrect-passcode');
+				return;
+			}
+			else {
+				$('#pre-assess-container').animate({top: -200, opacity: 0}, 500, function() {
+					$('#pre-assess-container').hide();
+					$('#assessment-form').removeClass('d-none');
+					$('#assessment-form').animate({opacity: 1}, 500);
+				});
+				if (marketName === 'NEW MARKET') {
+					marketName = info[5].value;
+
+					const newMarket = {
+						"name": marketName,
+						"address": {
+							"address": info[7].value,
+							"city": info[8].value,
+							"state": info[9].value,
+							"zip": info[10].value
+						},
+						"storeType": info[6].value,
+						"level": "0",
+						"assessments": []
+					};
+				}
+				$('#market-name').text(": " + marketName).fadeIn(500);
+			}
+		},
+	});
+
+
+//console.log("access: " + access);
+
+/*
+	if (code != process.env.ASSESS_CODE) {
+
+	} */
 
 	// If new market, push new market to database
+	/*
 	if (marketName === 'NEW MARKET') {
 		marketName = info[4].value;
 
@@ -37,15 +89,7 @@ function submitPreAssess() {
 			"level": "0",
 			"assessments": []
 		};
-	}
-
-	addressInfo = {
-		"address": "4811 El Cajon Blvd",
-		"city": "San Diego",
-		"state": "CA",
-		"zip": "92115"
-	};
-	storeType = "Small";
+	} */
 /*
 	$.ajax({
 		type: "POST",
@@ -57,7 +101,7 @@ function submitPreAssess() {
 		},
 	});
 */
-	$('#market-name').text(": " + marketName).fadeIn(500);
+	//$('#market-name').text(": " + marketName).fadeIn(500);
 }
 
 function calcLevel() {
