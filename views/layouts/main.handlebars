@@ -64,9 +64,15 @@
             </li>
           </ul>
 
-         <div class="ml-auto">
-          <a role="button" href="/admin-login" class="btn btn-outline-light">Admin</a>
-        </div>
+        {{#if isAuthenticated}}
+          <div class="ml-auto">
+            <a role="button" href="/logout" class="btn btn-outline-light">Logout</a>
+          </div>
+        {{else}}
+          <div class="ml-auto">
+            <a role="button" href="/admin-login" class="btn btn-outline-light">Admin</a>
+          </div>
+        {{/if}}
       </div>
 
   </nav>
