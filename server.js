@@ -64,7 +64,7 @@ app.use(function(req , res, next){
 });
 
 app.get("/", home.view);
-app.get("/assess", authenticationMiddleware(), assess.view);
+app.get("/assess", assess.view);
 app.get("/assess-edit", authenticationMiddleware(), assess.edit);
 app.post("/assess-save", authenticationMiddleware(), assess.save);
 //app.post("/assess-save-market", assess.saveMarket); 
