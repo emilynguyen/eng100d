@@ -31,8 +31,11 @@
     <link href="css/table.css" rel="stylesheet" type="text/css">
 
     <!-- From old app -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800">
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+
+    <!-- Google Charts API -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
 <body>
@@ -58,9 +61,15 @@
             </li>
           </ul>
 
-         <div class="ml-auto">
-          <a role="button" href="/admin-login" class="btn btn-outline-light">Admin</a>
-        </div>
+        {{#if isAuthenticated}}
+          <div class="ml-auto">
+            <a role="button" href="/logout" class="btn btn-outline-light">Logout</a>
+          </div>
+        {{else}}
+          <div class="ml-auto">
+            <a role="button" href="/admin-login" class="btn btn-outline-light">Admin</a>
+          </div>
+        {{/if}}
       </div>
 
   </nav>

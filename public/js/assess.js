@@ -3,25 +3,14 @@ let firstName;
 let lastName;
 let email;
 let marketName;
+let addressInfo;
+let storeType;
 
-/*
-function submitData(){
-	$.ajax({
-		type: "POST",
-		url: '/data',
-		dataType: 'text',
-		data: {name: $('#inputField').val(), pass: "something"},
-		success: (result) => {
-			console.log(result);
-		},
-	});
-}
-*/
 function submitPreAssess() {
 
 
 	const info = $('#pre-assess-form').serializeArray();
-	console.log(info);
+	//console.log(info);
 
 	firstName = info[0].value;
 	lastName = info[1].value;
@@ -43,6 +32,7 @@ function submitPreAssess() {
 			if (!data) {
 				console.log('Incorrect data');
 				// Display incorrect passcode error
+				$('.assess-code-input').val("");
 				$('.assess-code-input').attr("placeholder", "Incorrect passcode");
 				$('.assess-code-input').addClass('incorrect-passcode');
 				return;
@@ -54,17 +44,17 @@ function submitPreAssess() {
 					$('#assessment-form').animate({opacity: 1}, 500);
 				});
 				if (marketName === 'NEW MARKET') {
-					marketName = info[4].value;
+					marketName = info[5].value;
 
 					const newMarket = {
 						"name": marketName,
 						"address": {
-							"address": info[6].value,
-							"city": info[7].value,
-							"state": info[8].value,
-							"zip": info[9].value
+							"address": info[7].value,
+							"city": info[8].value,
+							"state": info[9].value,
+							"zip": info[10].value
 						},
-						"storeType": info[5].value,
+						"storeType": info[6].value,
 						"level": "0",
 						"assessments": []
 					};
@@ -183,15 +173,34 @@ function submitAssessment() {
 		"marketName": marketName,
 		"level": level,
 		"assessment": assessment
-	}
-	console.log(assessment);
-	console.log(submission);
+	};
+
+	const testing = {
+		"name": marketName,
+		"address": addressInfo,
+		"storeType": storeType,
+		"level": level,
+		"assessment": assessment
+	};
+/*
 	$.ajax({
 		type: 'POST',
 		url: '/assess-submit',
 		data: {answers:JSON.stringify(answers), evaluator:assessment['evaluator'], marketName: submission['marketName'], level: submission['level']},
 		success: (results) => {
 			console.log(results);
+		},
+	});
+	*/
+
+
+	$.ajax({
+		type: 'POST',
+		url: '/assess-submit',
+		data:{everything: JSON.stringify(testing)},
+		//data:{assessment:JSON.stringify(assessment), submission:JSON.stringify(submission)},
+		success: (results) => {
+			console.log("Results: " + results);
 		},
 	});
 

@@ -7,6 +7,9 @@ var express = require('express'),
 var http = require("http");
 var path = require("path");
 var bodyParser = require('body-parser')
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var session = require('express-session');
 
 /*
 const isDev = process.env.NODE_ENV === 'development';
@@ -27,6 +30,7 @@ var data = require("./routes/data");
 // Database
 const sqlite3 = require('sqlite3');
 const assessments = new sqlite3.Database('assessment.db');
+const userdb = new sqlite3.Database('users_accounts.db');
 
 var app = express();
 
@@ -49,21 +53,89 @@ app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, "public")));
 
+//express-session set up
+app.use(session({
+  secret: 'qewrsdfasdf',
+  saveUninitialized: false,
+  resave: false,
+  cookie: { secure: false }
+}));
+
+
+//passport set up
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+//setting up global isAunthenticted var
+app.use(function(req , res, next){
+  res.locals.isAuthenticated = req.isAuthenticated()
+  next();
+});
+
 app.get("/", home.view);
 app.get("/assess", assess.view);
-app.get("/assess-edit", assess.edit);
-app.post("/assess-save", assess.save);
+app.get("/assess-edit", authenticationMiddleware(), assess.edit);
+app.post("/assess-save", authenticationMiddleware(), assess.save);
 app.post("/assess-verify-code", assess.verifyCode);
 //app.post("/assess-save-market", assess.saveMarket);
 //app.post("/assess-submit", assess.submit);
 app.get("/admin-login", admin.loginView);
 app.get("/admin-login-verify", admin.loginVerify);
-app.get("/admin", admin.view);
+app.get("/admin",authenticationMiddleware(), admin.view);
 app.get("/signup", signup.view);
 app.get("/markets", markets.view);
-//app.get("/data", data.view);
+app.get("/data", data.view);
 
 
+//ends the session and returns to main page
+app.get('/logout', function(req, res, next){
+      req.logout();
+      res.redirect('admin-login');
+});
+
+
+
+//code that searches for the user account in database
+passport.use(new LocalStrategy(function(username, password, done) {
+  userdb.get('SELECT user FROM users_accounts WHERE user= ?', username, function(err, row) {
+    //failed to find user in database
+    if (!row){
+       return done(null, false);
+    }
+    userdb.get('SELECT user, id FROM users_accounts WHERE user = ? AND password = ?', username, password, function(err, row) {
+      //got the wrong password but correct user
+      if (!row) {
+        return done(null, false);
+      }
+      return done(null, row);
+    });
+  });
+}));
+
+//login POST call checks for authentication
+app.post('/admin-login', passport.authenticate('local', { successRedirect: '/admin', failureRedirect: '/admin-login'}));
+
+//initializes session when user first loges in creates a cookie
+passport.serializeUser(function(user, done) {
+  return done(null, user.id);
+});
+
+//check if session is valid after other callses
+passport.deserializeUser(function(id, done) {
+  userdb.get('SELECT id, user FROM users_accounts WHERE id = ?', id, function(err, row) {
+    if (!row) return done(null, false);
+    return done(null, row);
+  });
+});
+
+//function that check if user was logged in
+function authenticationMiddleware () {
+  return (req, res, next) => {
+      if (req.isAuthenticated()) return next();
+      res.redirect('/admin-login')
+  }
+};
 //POST request for pre-assessment
 /*
 app.post('/assess-save-market', (req, res) => {
@@ -75,16 +147,21 @@ app.post('/assess-save-market', (req, res) => {
 //POST request for full assessment
 app.post('/assess-submit', (req, res) => {
   console.log(req.body);
+  assessments.run("INSERT INTO assessmentTable(name) VALUES(?)", req.body.everything);
+  //assessments.run("INSERT INTO assessmentTable(name, address) VALUES(?,?)", req.body.assessment, req.body.submission);
+  /*
   assessments.run("INSERT INTO assessmentTable(firstName, lastName, marketName, email, level, assessment) VALUES(?,?,?,?,?,?)",
   req.body['evaluator[first]'], req.body['evaluator[last]'], req.body.marketName, req.body['evaluator[email]'], req.body.level, req.body.answers);
+  */
   res.send("Completed Assessment");
+
 });
 
 
 //GET Request for a specific market
 app.get('/markets/:name', (req, res) =>{
   const marketSearch = req.params.name;
-  assessments.all('SELECT * FROM assessmentTable WHERE marketName = $name',
+  assessments.all('SELECT * FROM assessmentTable WHERE marketName like $name',
     {$name: marketSearch},
     (err, rows) => {
       if(rows.length > 0){
@@ -96,10 +173,10 @@ app.get('/markets/:name', (req, res) =>{
 });
 
 //GET Request for all markets
-app.get('/markets', (req,res) => {
-  assesments.all('SELECT firstName, lastName, marketName, email, level FROM assessmentTable', (err,rows) =>{
+app.get('/marketss', (req,res) => {
+  assessments.all('SELECT * FROM assessmentTable', (err,rows) =>{
     if(rows.length > 0){
-      res.send(rows);
+      res.send(JSON.parse(rows[0].name));
     }else{
       res.send("There are no markets currently in the database");
     }

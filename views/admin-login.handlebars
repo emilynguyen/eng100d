@@ -3,12 +3,12 @@
     <div class="admin-login text-center">
       <label><h3>Administrator Login</h3></label>
 
-      <form onsubmit="adminLogin(); return false;">
+      <form method="post" action="admin-login">
         <div class="form-group">
-          <input type="email" class="form-control form-control-lg"   placeholder="Username">
+          <input type="username" name="username" class="form-control form-control-lg"   placeholder="Username">
         </div>
         <div class="form-group">
-          <input type="password" class="form-control form-control-lg" placeholder="Password">
+          <input type="password" name="password" class="form-control form-control-lg" placeholder="Password">
         </div>
         <button type="submit" class="btn btn-block btn-lg btn-success">Sign In</button>
       </form>
