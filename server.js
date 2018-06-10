@@ -1,10 +1,20 @@
 'use strict';
 
+require('dotenv').config();
+
 var express = require('express'),
     exphbs  = require('express-handlebars'); // "express-handlebars"
 var http = require("http");
 var path = require("path");
 var bodyParser = require('body-parser')
+
+/*
+const isDev = process.env.NODE_ENV === 'development';
+
+if (isDev) {
+  require('dotenv').load(); // eslint-disable-line
+}
+*/
 
 // Routes
 var home = require("./routes/home");
@@ -43,6 +53,7 @@ app.get("/", home.view);
 app.get("/assess", assess.view);
 app.get("/assess-edit", assess.edit);
 app.post("/assess-save", assess.save);
+app.post("/assess-verify-code", assess.verifyCode);
 //app.post("/assess-save-market", assess.saveMarket);
 //app.post("/assess-submit", assess.submit);
 app.get("/admin-login", admin.loginView);

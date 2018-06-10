@@ -24,3 +24,11 @@
 		color: red;
 	}
 }
+
+.incorrect-passcode {
+  @extend .border;
+  @extend .border-danger;
+  &::placeholder {
+    @extend .text-danger;
+  }
+}

@@ -3,13 +3,15 @@ const markets = require("../markets.json");
 
 exports.view = function(req, res) {
   res.render("assess", {
-    questions, markets
+    questions, markets,
+    title: "Market Assessment | LWCMP Tool"
   });
 };
 
 exports.edit = function(req, res) {
   res.render("assess-edit", {
-    questions
+    questions,
+    title: "Edit Assessment | LWCMP Tool"
   });
 };
 
@@ -23,6 +25,17 @@ exports.save = function(req, res) {
   for (let i = 0; i < newQuestions.length; i++) {
     questions.push(newQuestions[i]);
   }
+};
+
+exports.verifyCode = function(req, res) {
+  const code = req.body.code;
+
+  if (code !== process.env.ASSESS_CODE) {
+    console.log('Incorrect passcode');
+    res.send(false);
+  }
+  console.log('Correct passcode');
+  res.send(true);
 };
 
 exports.saveMarket = function(req, res) {

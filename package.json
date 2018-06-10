@@ -8,11 +8,12 @@
     "url": "git://github.com/emnguyen/eng100d.git"
   },
   "dependencies": {
+    "autoprefixer": "^8.4.1",
     "body-parser": "^1.18.2",
+    "browser-sync": "^2.24.4",
+    "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
-    "autoprefixer": "^8.4.1",
-    "browser-sync": "^2.24.4",
     "gulp": "^3.9.1",
     "gulp-nodemon": "^2.2.1",
     "gulp-postcss": "^7.0.1",
