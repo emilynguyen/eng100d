@@ -224,17 +224,6 @@
 				"state": "CA",
 				"zip": "92115"
 			},
-			"storeType": "Convenience",
-			"level": "1"
-		},
-		{
-			"name": "City Heights Market",
-			"address": {
-				"address": "4811 El Cajon Blvd",
-				"city": "San Diego",
-				"state": "CA",
-				"zip": "92115"
-			},
 			"storeType": "Medium",
 			"level": "2"
 		},
