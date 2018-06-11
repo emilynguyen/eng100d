@@ -1,6 +1,7 @@
 
 <div class="container main">
 
+<!--
 <div class="filterContainer">
     <div class="dropdown">
         <button onclick="myFunction()" class="dropbtn">Levels</button>
@@ -48,32 +49,32 @@
         </div>
       </div>
     </div>
+-->
 
 
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th>Market Name</th>
+                <th>Store Type</th> 
+                <th>Zip Code</th>
+                <th>Level</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each markets}}
+            <tr>
+                <td>{{name}}</td>
 
-<table id="table_id" class="display">
-    <thead>
-        <tr>
-            <th>Market Name</th>
-            <th>Store Type</th> 
-            <th>Zip Code</th>
-            <th>Level</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each markets}}
-        <tr>
-            <td>{{name}}</td>
+                <td>{{storeType}}</td>
 
-            <td>{{storeType}}</td>
+                <td>{{address.zip}}</td>
 
-            <td>{{address.zip}}</td>
-
-            <td>{{level}}</td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+                <td>{{level}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
 
 
 </div>

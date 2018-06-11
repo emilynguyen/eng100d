@@ -8506,3 +8506,13 @@ textarea {
 
 .show {
   display: block; }
+
+.questionChartContainer {
+  width: 70%;
+  height: 0px;
+  text-align: justify; }
+
+.sideChartContainer {
+  width: 50%;
+  margin-top: 8%;
+  margin-left: 60%; }

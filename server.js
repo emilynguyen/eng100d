@@ -178,9 +178,16 @@ app.get('/markets/:name', (req, res) =>{
 
 //GET Request for all markets
 app.get('/marketss', (req,res) => {
+  console.log("get request called");
   assessments.all('SELECT * FROM assessmentTable', (err,rows) =>{
     if(rows.length > 0){
-      res.send(JSON.parse(rows[0].name));
+      //console.log(rows[0].name);
+      console.log(rows);
+      //console.log("Rows[0].name printed above");
+      //console.log(rows);
+      //res.send(JSON.parse(rows));
+      res.send(rows);
+      //console.log("rows parsed");
     }else{
       res.send("There are no markets currently in the database");
     }

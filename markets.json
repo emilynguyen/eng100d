@@ -193,5 +193,60 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Zion Market",
+			"address": {
+				"address": "4811 El Cajon Blvd",
+				"city": "San Diego",
+				"state": "CA",
+				"zip": "92190"
+			},
+			"storeType": "Large",
+			"level": "3"
+		},
+		{
+			"name": "99 Ranch",
+			"address": {
+				"address": "4811 El Cajon Blvd",
+				"city": "San Diego",
+				"state": "CA",
+				"zip": "92984"
+			},
+			"storeType": "Medium",
+			"level": "3"
+		},
+		{
+			"name": "City Heights Market",
+			"address": {
+				"address": "4811 El Cajon Blvd",
+				"city": "San Diego",
+				"state": "CA",
+				"zip": "92115"
+			},
+			"storeType": "Convenience",
+			"level": "1"
+		},
+		{
+			"name": "City Heights Market",
+			"address": {
+				"address": "4811 El Cajon Blvd",
+				"city": "San Diego",
+				"state": "CA",
+				"zip": "92115"
+			},
+			"storeType": "Medium",
+			"level": "2"
+		},
+		{
+			"name": "El Cajon Market",
+			"address": {
+				"address": "4811 El Cajon Blvd",
+				"city": "San Diego",
+				"state": "CA",
+				"zip": "92115"
+			},
+			"storeType": "Small",
+			"level": "1"
 		}
 	]
