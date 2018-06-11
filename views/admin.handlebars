@@ -1,8 +1,34 @@
 <div class="container main" style="height: 100%;">
 
-  <h2>Administrator Tools</h2>
+  <h2>Administrator Dashboard</h2>
   <div class="form-group">
 	  <a href="/assess-edit"><button type="button" class="btn btn-primary">Edit Market Assessment</button></a>
 	</div>
+  <br>
+  <h3>Completed Assessments</h3>
+  <table class="table table-striped" id="submission-table">
+    <thead class="thead-dark">
+      <tr>
+        <th class="market-sort align-middle">Market<i class="sort-icon fa fa-sort"></i></th>
+        <th class="evaluator-sort align-middle">Evaluator<i class="sort-icon fa fa-sort"></i></th>
+        <th class="date-sort align-middle">Date of Visit<i class="sort-icon fa fa-sort-down"></i></th>
+        <th></th>
+      </tr>
+    </thead>
+    {{#each markets}}
+      {{#each assessments}}
+      <tr class="assessment-row">
+        <td class="market-cell">{{../name}}</td>
+        <td>{{evaluator.first}} {{evaluator.last}}</td>
+
+        <!-- Hidden span to save timestamp -->
+        <td class="d-none timestamp-cell">{{evaluator.time}}</td>
+        <td class="time-cell">{{evaluator.time}}</td>
+
+        <td class="text-center delete-assessment-btn"><i class="fas fa-trash-alt"></i></td>
+      </tr>
+      {{/each}}
+    {{/each}}
+  </table>
 
 <script type="text/javascript" src="js/admin.js"></script>
