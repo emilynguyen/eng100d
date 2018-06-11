@@ -8,6 +8,77 @@ exports.view = function(req, res) {
   });
 };
 
+exports.viewAssessment = function(req, res) {
+  let market = req.params.market;
+  let time = req.params.time;
+
+  market = market.toString();
+  let submission;
+  let marketInfo;
+
+  // Iterate through all markets
+  for (let i = 0; i < markets.length; i++) {
+    // Skip until matching market is found
+    if (market !== markets[i].name)
+      continue;
+
+    // Iterate through market's assessments
+    let assessments = markets[i].assessments;
+    for (let j = 0; j < assessments.length; j++) {
+
+      // If timestamp matches, assessment is found
+      let currTime = assessments[j].evaluator.time;
+      if (time == currTime) {
+        submission = assessments[j];
+      }
+
+    }
+    marketInfo = {
+      name: markets[i].name,
+      address: markets[i].address.address + ", " + markets[i].address.city + ", " + markets[i].address.state
++ " " + markets[i].address.zip,
+      storeType: markets[i].storeType,
+      level: markets[i].level,
+      time: time
+    }
+  }
+
+  res.render("submission", {
+    marketInfo,
+    submission,
+    title: market + " Assessment (ID " + time + ") | LWCMP Tool"
+  });
+};
+
+exports.deleteAssessment = function(req, res) {
+  let market = req.params.market;
+  let time = req.params.time;
+
+  market = market.toString();
+
+  // Iterate through all markets
+  for (let i = 0; i < markets.length; i++) {
+    // Skip until matching market is found
+    if (market !== markets[i].name)
+      continue;
+
+    // Iterate through market's assessments
+    let assessments = markets[i].assessments;
+    for (let j = 0; j < assessments.length; j++) {
+
+      // If timestamp matches, assessment is found
+      let currTime = assessments[j].evaluator.time;
+      if (time == currTime) {
+        // Delete assessment from database
+        assessments.splice(j, 1);
+      }
+
+    }
+  }
+
+  res.redirect('/admin');
+};
+
 exports.edit = function(req, res) {
   res.render("assess-edit", {
     questions,

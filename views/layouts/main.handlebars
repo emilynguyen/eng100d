@@ -19,20 +19,21 @@
       crossorigin="anonymous"></script>
 
     <!-- main.js -->
-    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
 
     <!-- main.css -->
-    <link href="css/main.css" rel="stylesheet" type="text/css">
-    <link rel="preload" href="img/live-well-logo.png" as="image" media="">
+    <link href="/css/main.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/img/live-well-logo.png" as="image" media="">
 
     <!-- DataTables import -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
-    <link href="css/table.css" rel="stylesheet" type="text/css">
+    <link href="/css/table.css" rel="stylesheet" type="text/css">
 
     <!-- From old app -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800">
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
     <!-- Google Charts API -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -42,7 +43,7 @@
 
       <nav id="home-nav" class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
 
-        <a class="navbar-brand" href="/"><img class="logo" src="img/live-well-logo.png"/></a>
+        <a class="navbar-brand" href="/"><img class="logo" src="/img/live-well-logo.png"/></a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -62,12 +63,17 @@
           </ul>
 
         {{#if isAuthenticated}}
+        <div class="d-sm-flex">
           <div class="ml-auto">
-            <a role="button" href="/logout" class="btn btn-outline-light">Logout</a>
+            <a role="button" href="/admin" class="btn btn-outline-success">Dashboard</a>
           </div>
+          <div class="ml-auto">
+            <a role="button" href="/logout" class="btn btn-outline-warning ml-2">Log Out</a>
+          </div>
+        </div>
         {{else}}
           <div class="ml-auto">
-            <a role="button" href="/admin-login" class="btn btn-outline-light">Admin</a>
+            <a role="button" href="/admin-login" class="btn btn-outline-warning">Admin Login</a>
           </div>
         {{/if}}
       </div>

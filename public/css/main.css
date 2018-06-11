@@ -8467,6 +8467,27 @@ textarea {
   width: 100%;
   max-width: 20rem; }
 
+#submission-table th {
+  cursor: pointer;
+  white-space: nowrap;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
+
+@media (max-width: 767.98px) {
+  #submission-table {
+    font-size: 0.8rem; } }
+
+.assessment-row {
+  cursor: pointer; }
+
+.sort-icon {
+  margin-left: 0.5rem; }
+
+.delete {
+  cursor: pointer; }
+
 .filterContainer {
   padding: 10px; }
 

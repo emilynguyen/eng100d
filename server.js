@@ -15,14 +15,6 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var session = require('express-session');
 
-/*
-const isDev = process.env.NODE_ENV === 'development';
-
-if (isDev) {
-  require('dotenv').load(); // eslint-disable-line
-}
-*/
-
 // Routes
 var home = require("./routes/home");
 var assess = require("./routes/assess");
@@ -79,6 +71,8 @@ app.use(function(req , res, next){
 
 app.get("/", home.view);
 app.get("/assess", assess.view);
+app.get("/assessment/:market/:time", authenticationMiddleware(), assess.viewAssessment);
+app.get("/delete-assessment/:market/:time", authenticationMiddleware(), assess.deleteAssessment);
 app.get("/assess-edit", authenticationMiddleware(), assess.edit);
 app.post("/assess-save", authenticationMiddleware(), assess.save);
 app.post("/assess-verify-code", assess.verifyCode);

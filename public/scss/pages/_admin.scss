@@ -6,3 +6,27 @@
   width: 100%;
   max-width: 20rem;
 }
+
+#submission-table {
+  th {
+    cursor: pointer;
+    white-space: nowrap;
+    user-select: none;
+  }
+  @include media-breakpoint-down(sm) {
+    font-size: 0.8rem;
+  }
+}
+
+.assessment-row {
+  cursor: pointer;
+}
+
+.sort-icon {
+  margin-left: 0.5rem;
+}
+
+
+.delete {
+  cursor: pointer;
+}
