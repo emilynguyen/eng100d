@@ -112,10 +112,12 @@ exports.verifyCode = function(req, res) {
 
 exports.saveMarket = function(req, res) {
   markets.push(req.body);
+  console.log(req.body);
   return;
 };
 
 exports.submit = function(req, res) {
+
   const assessment = req.body.assessment;
   const level = req.body.level;
   const name = req.body.marketName;
@@ -128,5 +130,21 @@ exports.submit = function(req, res) {
     }
   }
 
-  console.log(assessment);
+  console.log(markets);
+
+/*
+  console.log(req.body);
+
+  let name = req.body.marketName;
+  let assessment = req.body.assessment;
+  let level = req.body.level;
+
+  assessments.run("INSERT INTO assessmentTable(name) VALUES(?)", req.body.everything); */
+
+  //assessments.run("INSERT INTO assessmentTable(name, address) VALUES(?,?)", req.body.assessment, req.body.submission);
+  /*
+  assessments.run("INSERT INTO assessmentTable(firstName, lastName, marketName, email, level, assessment) VALUES(?,?,?,?,?,?)",
+  req.body['evaluator[first]'], req.body['evaluator[last]'], req.body.marketName, req.body['evaluator[email]'], req.body.level, req.body.answers);
+
+  res.send("Completed Assessment"); */
 };

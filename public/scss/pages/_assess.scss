@@ -32,3 +32,9 @@
     @extend .text-danger;
   }
 }
+
+.market-info {
+  @include media-breakpoint-only(xs) {
+    margin-bottom: 1rem;
+  }
+}

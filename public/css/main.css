@@ -8425,6 +8425,10 @@ input:checked + .slider:before {
   content: " *";
   color: red; }
 
+@media (max-width: 575.98px) {
+  .market-info {
+    margin-bottom: 1rem; } }
+
 #question-list-edit {
   margin: 0;
   padding: 0;
