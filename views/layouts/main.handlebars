@@ -63,12 +63,17 @@
           </ul>
 
         {{#if isAuthenticated}}
+        <div class="d-sm-flex">
           <div class="ml-auto">
-            <a role="button" href="/logout" class="btn btn-outline-light">Logout</a>
+            <a role="button" href="/admin" class="btn btn-outline-success">Dashboard</a>
           </div>
+          <div class="ml-auto">
+            <a role="button" href="/logout" class="btn btn-outline-warning ml-2">Log Out</a>
+          </div>
+        </div>
         {{else}}
           <div class="ml-auto">
-            <a role="button" href="/admin-login" class="btn btn-outline-light">Admin</a>
+            <a role="button" href="/admin-login" class="btn btn-outline-warning">Admin Login</a>
           </div>
         {{/if}}
       </div>
