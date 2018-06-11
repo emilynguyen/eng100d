@@ -19,7 +19,7 @@ sudo npm install --global gulp-cli
 To start the server with Gulp (Nodemon, BrowserSync, Sass compiler, Autoprefixer):
 
 ```shell
-gulp
+npm run start:dev
 ```
 This command will open http://localhost:5000/ in a new tab. Upon saving your work, Gulp will automatically compile Sass, add CSS prefixes, and reload the page.
 
