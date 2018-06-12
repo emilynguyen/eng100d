@@ -19,7 +19,6 @@ var session = require('express-session');
 var home = require("./routes/home");
 var assess = require("./routes/assess");
 var admin = require("./routes/admin");
-var signup = require("./routes/signup");
 var markets = require("./routes/markets");
 var data = require("./routes/data");
 
@@ -79,9 +78,7 @@ app.post("/assess-verify-code", assess.verifyCode);
 app.post("/assess-save-market", assess.saveMarket);
 app.post("/assess-submit", assess.submit);
 app.get("/admin-login", admin.loginView);
-app.get("/admin-login-verify", admin.loginVerify);
 app.get("/admin",authenticationMiddleware(), admin.view);
-app.get("/signup", signup.view);
 app.get("/data", data.view);
 app.get("/markets", (req, res) =>{
 

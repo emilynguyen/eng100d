@@ -118,9 +118,10 @@ $(document).ready(function() {
     const market = $row.find('.market-cell').text();
     const timestamp = $row.find('.timestamp-cell').text();
     const time = $row.find('.time-cell').text();
+    const evaluator = $row.find('.evaluator-cell').text();
     const entry = encodeURI(market + "/"+ timestamp);
 
-    if (confirm(`Are you sure you want to delete the ${market} assessment from ${time}?`)) {
+    if (confirm(`Are you sure you want to delete the ${market} assessment submitted by ${evaluator} on ${time}?`)) {
       window.location.replace(`/delete-assessment/${entry}`);
       return false;
     }

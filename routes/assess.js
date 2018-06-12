@@ -1,5 +1,4 @@
 const questions = require("../questions.json");
-//const markets = require("../markets.json");
 const sqlite3 = require('sqlite3');
 let marketdb = new sqlite3.Database('./markets.db');
 
@@ -59,6 +58,8 @@ exports.viewAssessment = function(req, res) {
         }
       }
 
+      //console.log(marketInfo);
+
       res.render("submission", {
         marketInfo,
         submission,
@@ -78,27 +79,43 @@ exports.deleteAssessment = function(req, res) {
 
   market = market.toString();
 
-  // Iterate through all markets
-  for (let i = 0; i < markets.length; i++) {
-    // Skip until matching market is found
-    if (market !== markets[i].name)
-      continue;
+  marketdb.all('SELECT * FROM markets', (err,rows) => {
+    if (rows.length > 0) {
+      const markets = JSON.parse(rows[0].data);
 
-    // Iterate through market's assessments
-    let assessments = markets[i].assessments;
-    for (let j = 0; j < assessments.length; j++) {
+      // Iterate through all markets
+      for (let i = 0; i < markets.length; i++) {
+        // Skip until matching market is found
+        if (market !== markets[i].name)
+          continue;
 
-      // If timestamp matches, assessment is found
-      let currTime = assessments[j].evaluator.time;
-      if (time == currTime) {
-        // Delete assessment from database
-        assessments.splice(j, 1);
+        // Iterate through market's assessments
+        let assessments = markets[i].assessments;
+        for (let j = 0; j < assessments.length; j++) {
+
+          // If timestamp matches, assessment is found
+          let currTime = assessments[j].evaluator.time;
+          if (time == currTime) {
+            // Delete assessment from database
+            assessments.splice(j, 1);
+          }
+
+        }
       }
 
+      // Update marketdb
+      marketdb.run(`UPDATE markets SET data = ?`, JSON.stringify(markets), function(err) {
+        if (err) {
+          return console.log(err.message);
+        }
+        console.log('Assessment deleted successfully');
+        res.redirect('/admin');
+      });
     }
-  }
-
-  res.redirect('/admin');
+    else {
+      console.log("Database is empty");
+    }
+  });
 };
 
 exports.edit = function(req, res) {
@@ -133,9 +150,25 @@ exports.verifyCode = function(req, res) {
 };
 
 exports.saveMarket = function(req, res) {
-  markets.push(req.body);
-  console.log(req.body);
-  return;
+  marketdb.all('SELECT * FROM markets', (err,rows) => {
+    if (rows.length > 0) {
+      const markets = JSON.parse(rows[0].data);
+
+      // Push new market to market array
+      markets.push(req.body);
+
+      // Update marketdb
+      marketdb.run(`UPDATE markets SET data = ?`, JSON.stringify(markets), function(err) {
+        if (err) {
+          return console.log(err.message);
+        }
+        console.log('New market added successfully');
+      });
+    }
+    else {
+      console.log("Database is empty");
+    }
+  });
 };
 
 exports.submit = function(req, res) {
@@ -155,9 +188,9 @@ exports.submit = function(req, res) {
         }
       }
 
-      marketdb.run(`UPDATE markets SET data = ${JSON.stringify(markets)}`, function(err) {
+      marketdb.run(`UPDATE markets SET data = ?`, JSON.stringify(markets), function(err) {
         if (err) {
-          return console.log("Error adding new assessment to database");
+          return console.log(err.message);
         }
         console.log('New assessment added successfully');
       });
