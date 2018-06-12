@@ -7,12 +7,19 @@ $.get('/marketss', function(rows){
 
     /* Parse all markets */
     var assessmentArray = new Array();
-    var currentObj;
+    let currentObj;
+
+    console.log(rows[0].name);
+    console.log(rows[1].name);
+    console.log(rows[2].name);
+    console.log(rows[3].name);
 
     for (var i = 0; i < rows.length; i++){
-        currentObj = JSON.parse(rows[0].name);
+        currentObj = JSON.parse(rows[i].name);
         assessmentArray[i] = currentObj;
     }
+
+    console.log(assessmentArray);
 
     /* Levels graph */
     let levelZero = 0;
