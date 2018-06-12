@@ -84,23 +84,23 @@ app.get("/admin",authenticationMiddleware(), admin.view);
 app.get("/signup", signup.view);
 app.get("/data", data.view);
 app.get("/markets", (req, res) =>{
-    
+
   assessments.all('SELECT * FROM assessmentTable', (err,rows) =>{
     if(rows.length > 0){
       console.log(rows);
       var currentObj;
       var assessmentArray = new Array();
-  
+
       for (var i = 0; i < rows.length; i++){
           currentObj = JSON.parse(rows[i].name);
           assessmentArray[i] = currentObj;
       }
-  
+
       res.render("markets", {
         assessmentArray,
         title: "Our Markets | LWCMP Tool"
       });
-    
+
     }else{
       res.send("There are no markets currently in the database");
     }

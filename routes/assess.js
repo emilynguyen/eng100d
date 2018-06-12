@@ -1,10 +1,22 @@
 const questions = require("../questions.json");
-const markets = require("../markets.json");
+//const markets = require("../markets.json");
+const sqlite3 = require('sqlite3');
+let marketdb = new sqlite3.Database('./markets.db');
 
 exports.view = function(req, res) {
-  res.render("assess", {
-    questions, markets,
-    title: "Market Assessment | LWCMP Tool"
+  marketdb.all('SELECT * FROM markets', (err,rows) => {
+    if (rows.length > 0) {
+      const markets = JSON.parse(rows[0].data);
+
+      res.render("assess", {
+        questions, markets,
+        title: "Market Assessment | LWCMP Tool"
+      });
+
+    }
+    else {
+      console.log("Database is empty");
+    }
   });
 };
 
@@ -16,37 +28,47 @@ exports.viewAssessment = function(req, res) {
   let submission;
   let marketInfo;
 
-  // Iterate through all markets
-  for (let i = 0; i < markets.length; i++) {
-    // Skip until matching market is found
-    if (market !== markets[i].name)
-      continue;
+  marketdb.all('SELECT * FROM markets', (err,rows) => {
+    if (rows.length > 0) {
+      const markets = JSON.parse(rows[0].data);
 
-    // Iterate through market's assessments
-    let assessments = markets[i].assessments;
-    for (let j = 0; j < assessments.length; j++) {
+      // Iterate through all markets
+      for (let i = 0; i < markets.length; i++) {
+        // Skip until matching market is found
+        if (market !== markets[i].name)
+          continue;
 
-      // If timestamp matches, assessment is found
-      let currTime = assessments[j].evaluator.time;
-      if (time == currTime) {
-        submission = assessments[j];
+        // Iterate through market's assessments
+        let assessments = markets[i].assessments;
+        for (let j = 0; j < assessments.length; j++) {
+
+          // If timestamp matches, assessment is found
+          let currTime = assessments[j].evaluator.time;
+          if (time == currTime) {
+            submission = assessments[j];
+          }
+
+        }
+        marketInfo = {
+          name: markets[i].name,
+          address: markets[i].address.address + ", " + markets[i].address.city + ", " + markets[i].address.state
+    + " " + markets[i].address.zip,
+          storeType: markets[i].storeType,
+          level: markets[i].level,
+          time: time
+        }
       }
 
-    }
-    marketInfo = {
-      name: markets[i].name,
-      address: markets[i].address.address + ", " + markets[i].address.city + ", " + markets[i].address.state
-+ " " + markets[i].address.zip,
-      storeType: markets[i].storeType,
-      level: markets[i].level,
-      time: time
-    }
-  }
+      res.render("submission", {
+        marketInfo,
+        submission,
+        title: market + " Assessment (ID " + time + ") | LWCMP Tool"
+      });
 
-  res.render("submission", {
-    marketInfo,
-    submission,
-    title: market + " Assessment (ID " + time + ") | LWCMP Tool"
+    }
+    else {
+      console.log("Database is empty");
+    }
   });
 };
 
@@ -117,20 +139,34 @@ exports.saveMarket = function(req, res) {
 };
 
 exports.submit = function(req, res) {
-
   const assessment = req.body.assessment;
   const level = req.body.level;
   const name = req.body.marketName;
 
-  for (let i = 0; i < markets.length; i++) {
-    // Find market
-    if (markets[i].name === name) {
-      markets[i].assessments.push(assessment);
-      markets[i].level = level;
-    }
-  }
+  marketdb.all('SELECT * FROM markets', (err,rows) => {
+    if (rows.length > 0) {
+      const markets = JSON.parse(rows[0].data);
 
-  console.log(markets);
+      for (let i = 0; i < markets.length; i++) {
+        // Find market
+        if (markets[i].name === name) {
+          markets[i].assessments.unshift(assessment);
+          markets[i].level = level;
+        }
+      }
+
+      marketdb.run(`UPDATE markets SET data = ${JSON.stringify(markets)}`, function(err) {
+        if (err) {
+          return console.log("Error adding new assessment to database");
+        }
+        console.log('New assessment added successfully');
+      });
+    }
+    else {
+      console.log("Database is empty");
+    }
+  });
+
 
 /*
   console.log(req.body);
@@ -148,3 +184,5 @@ exports.submit = function(req, res) {
 
   res.send("Completed Assessment"); */
 };
+
+//marketdb.close();
