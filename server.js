@@ -71,13 +71,13 @@ app.use(function(req , res, next){
 
 app.get("/", home.view);
 app.get("/assess", assess.view);
-app.get("/assessment/:market/:time", authenticationMiddleware(), assess.viewAssessment);
+app.get("/assessment/:market/:time", assess.viewAssessment);
 app.get("/delete-assessment/:market/:time", authenticationMiddleware(), assess.deleteAssessment);
 app.get("/assess-edit", authenticationMiddleware(), assess.edit);
 app.post("/assess-save", authenticationMiddleware(), assess.save);
 app.post("/assess-verify-code", assess.verifyCode);
-//app.post("/assess-save-market", assess.saveMarket);
-//app.post("/assess-submit", assess.submit);
+app.post("/assess-save-market", assess.saveMarket);
+app.post("/assess-submit", assess.submit);
 app.get("/admin-login", admin.loginView);
 app.get("/admin-login-verify", admin.loginVerify);
 app.get("/admin",authenticationMiddleware(), admin.view);
@@ -164,19 +164,6 @@ app.post('/assess-save-market', (req, res) => {
   res.send("FINISHED preassessment for " + req.body.marketName);
 });
 */
-//POST request for full assessment
-app.post('/assess-submit', (req, res) => {
-  console.log(req.body);
-  assessments.run("INSERT INTO assessmentTable(name) VALUES(?)", req.body.everything);
-  //assessments.run("INSERT INTO assessmentTable(name, address) VALUES(?,?)", req.body.assessment, req.body.submission);
-  /*
-  assessments.run("INSERT INTO assessmentTable(firstName, lastName, marketName, email, level, assessment) VALUES(?,?,?,?,?,?)",
-  req.body['evaluator[first]'], req.body['evaluator[last]'], req.body.marketName, req.body['evaluator[email]'], req.body.level, req.body.answers);
-  */
-  res.send("Completed Assessment");
-
-});
-
 
 //GET Request for a specific market
 app.get('/markets/:name', (req, res) =>{

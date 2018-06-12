@@ -1,13 +1,77 @@
 <div class="container main">
   {{#with marketInfo}}
 
-  <h2>{{name}} Assessment (ID {{time}})</h2>
+    <h2>{{name}} Assessment (ID {{time}})</h2>
+
+    {{#unless ../isAuthenticated}}
+    <div class="row">
+      <div class="col-md-7 market-info">
+
+        <div class="card h-100">
+          <div class="card-header">
+            Market Info
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-5">
+                <h5>Address</h5>
+                {{address}}
+              </div>
+              <div class="col-4">
+                <h5>Store type</h5>
+                {{storeType}}
+              </div>
+              <div class="col-3">
+                <h5>Level</h5>
+                <h1>{{level}}</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-5">
+
+        {{#with ../submission}}
+        <div class="card h-100">
+          <div class="card-header">
+            Submission Details
+          </div>
+          <div class="card-body">
+
+            <div class="row">
+              <div class="col-6">
+                <div class="card-title">
+                  <h5>Submitted by</h5>
+                  {{evaluator.first}} {{evaluator.last}}<br>
+                  <a href="mailto:{{evaluator.email}}">{{evaluator.email}}</a>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="card-title">
+                  <h5>Completed on</h5>
+                  <span class="time-col">{{evaluator.time}}</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div> <!-- /.card -->
+        {{/with}}
+
+      </div>
+    </div>
+    {{/unless}}
 
   {{/with}}
 
   {{#with submission}}
 
+  {{#if ../isAuthenticated}}
   <div class="card">
+    <div class="card-header">
+      Assessment Info
+    </div>
     <div class="card-body">
 
       <div class="row">
@@ -18,14 +82,16 @@
         </div>
         <div class="col-6 col-sm-4">
           <div class="card-title">
-            <h5>Timestamp</h5>
+            <h5>Completed on</h5>
           </div>
         </div>
+        {{#if ../isAuthenticated}}
         <div class="d-none d-sm-block col-sm-4 text-right">
           <a href="#" class="btn btn-danger btn-sm delete-assessment-btn">
             Delete Assessment
           </a>
         </div>
+        {{/if}}
       </div>
 
       <div class="row">
@@ -37,19 +103,21 @@
           {{evaluator.time}}
         </div>
         <div class="col-12 col-sm-4 d-sm-none text-right">
-          <br>
-          <a href="#" class="btn btn-danger btn-sm delete-assessment-btn">
-            Delete Assessment
-          </a>
-
+          {{#if ../isAuthenticated}}
+            <br>
+            <a href="#" class="btn btn-danger btn-sm delete-assessment-btn">
+              Delete Assessment
+            </a>
+          {{/if}}
         </div>
       </div>
     </div>
   </div>
+  {{/if}}
 
   {{/with}}
 
-  <div class="card mt-3">
+  <div class="card mt-4">
     <div class="card-body">
       <h3 class="mb-4">Responses</h3>
       <ol>
