@@ -1,20 +1,32 @@
-const questions = require("../questions.json");
+//const questions = require("../questions.json");
 const sqlite3 = require('sqlite3');
 let marketdb = new sqlite3.Database('./markets.db');
+let questionsdb = new sqlite3.Database('./questions.db');
+
 
 exports.view = function(req, res) {
+  // Query markets
   marketdb.all('SELECT * FROM markets', (err,rows) => {
     if (rows.length > 0) {
       const markets = JSON.parse(rows[0].data);
 
-      res.render("assess", {
-        questions, markets,
-        title: "Market Assessment | LWCMP Tool"
-      });
+      // Query survey questions
+      questionsdb.all('SELECT * FROM questions', (err,rows) => {
+        if (rows.length > 0) {
+          const questions = JSON.parse(rows[0].data);
 
+          res.render("assess", {
+            questions, markets,
+            title: "Market Assessment | LWCMP Tool"
+          });
+        }
+        else {
+          console.log("Questions database is empty");
+        }
+      });
     }
     else {
-      console.log("Database is empty");
+      console.log("Markets database is empty");
     }
   });
 };
@@ -68,7 +80,7 @@ exports.viewAssessment = function(req, res) {
 
     }
     else {
-      console.log("Database is empty");
+      console.log("Markets database is empty");
     }
   });
 };
@@ -98,6 +110,12 @@ exports.deleteAssessment = function(req, res) {
           if (time == currTime) {
             // Delete assessment from database
             assessments.splice(j, 1);
+
+            // If assessments array is now empty, remove markets
+            if (assessments.length == 0) {
+              markets.splice(i, 1);
+            }
+            break;
           }
 
         }
@@ -113,21 +131,40 @@ exports.deleteAssessment = function(req, res) {
       });
     }
     else {
-      console.log("Database is empty");
+      console.log("Markets database is empty");
     }
   });
 };
 
 exports.edit = function(req, res) {
-  res.render("assess-edit", {
-    questions,
-    title: "Edit Assessment | LWCMP Tool"
+  // Query survey questions
+  questionsdb.all('SELECT * FROM questions', (err,rows) => {
+    if (rows.length > 0) {
+      const questions = JSON.parse(rows[0].data);
+
+      res.render("assess-edit", {
+        questions,
+        title: "Edit Assessment | LWCMP Tool"
+      });
+    }
+    else {
+      console.log("Questions database is empty");
+    }
   });
 };
 
 exports.save = function(req, res) {
   const newQuestions = req.body;
 
+  // Update marketdb
+  questionsdb.run(`UPDATE questions SET data = ?`, JSON.stringify(newQuestions), function(err) {
+    if (err) {
+      return console.log(err.message);
+    }
+    console.log('Assessment form saved successfully');
+  });
+
+/*
   // Clear current questions
   questions.splice(0, questions.length);
 
@@ -135,6 +172,7 @@ exports.save = function(req, res) {
   for (let i = 0; i < newQuestions.length; i++) {
     questions.push(newQuestions[i]);
   }
+  */
 };
 
 exports.verifyCode = function(req, res) {
@@ -166,7 +204,7 @@ exports.saveMarket = function(req, res) {
       });
     }
     else {
-      console.log("Database is empty");
+      console.log("Markets database is empty");
     }
   });
 };
@@ -184,7 +222,8 @@ exports.submit = function(req, res) {
         // Find market
         if (markets[i].name === name) {
           markets[i].assessments.unshift(assessment);
-          markets[i].level = level;
+          // TEMP DISABLE UPDATING LEVEL SINCE IDK HOW TO CALC THIS
+          //markets[i].level = level;
         }
       }
 
@@ -196,7 +235,7 @@ exports.submit = function(req, res) {
       });
     }
     else {
-      console.log("Database is empty");
+      console.log("Markets database is empty");
     }
   });
 
