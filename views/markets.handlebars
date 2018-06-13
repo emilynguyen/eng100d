@@ -1,80 +1,32 @@
 
 <div class="container main">
+    <div class="card">
+        <div class="card-body">
+            <table id="table_id" class="display">
+                <thead>
+                    <tr>
+                        <th>Market Name</th>
+                        <th>Store Type</th> 
+                        <th>Zip Code</th>
+                        <th>Level</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each markets}}
+                    <tr>
+                        <td>{{name}}</td>
 
-<!--
-<div class="filterContainer">
-    <div class="dropdown">
-        <button onclick="myFunction()" class="dropbtn">Levels</button>
-        <div id="myDropdown" class="dropdown-content">
-            <li role="option" class="dropdown-item" id="#level0">Level 0</a>
-            <a href="#level1">Level 1</a>
-            <a href="#level2">Level 2</a>
-            <a href="#level3">Level 3</a>
+                        <td>{{storeType}}</td>
+
+                        <td>{{address.zip}}</td>
+
+                        <td>{{level}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
         </div>
     </div>
-</div>
-
-
-
-<div class="col-lg-6 col-md-12">
-          <div class="container" id="filter-table">
-            <div class="btn filterTitle">
-                Filter by 
-            </div>
-            <div class="filter">
-                <select class="selectpicker" id="store-type-filter" multiple title="Store Type">
-                  <option id="store-type-convenience">Convenience</option>
-                  <option id="store-type-small">Small</option>
-                  <option id="store-type-medium">Medium</option>
-                  <option id="store-type-large">Large</option>
-                </select>
-            </div>
-            <div class="filter">
-                <select class="selectpicker" id="zipcode-filter" title="Zipcode" data-live-search="true">
-                    <option id="all-zipcodes" value="defaultVal">All</option>
-                </select>
-            </div>
-            <div class="filter">
-                <select class="selectpicker" id="levels-filter" multiple title="Levels">
-                  <option id="level-0">Level 0</option>
-                  <option id="level-1">Level 1</option>
-                  <option id="level-2">Level 2</option>
-                  <option id="level-3">Level 3</option>
-                </select>
-            </div>
-            <btn class="btn" id="clearFilterButton">
-              Clear Filters
-            </btn>
-          </div>
-        </div>
-      </div>
-    </div>
--->
-
-
-    <table id="table_id" class="display">
-        <thead>
-            <tr>
-                <th>Market Name</th>
-                <th>Store Type</th> 
-                <th>Zip Code</th>
-                <th>Level</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each assessmentArray}}
-            <tr>
-                <td>{{name}}</td>
-
-                <td>{{storeType}}</td>
-
-                <td>{{address.zip}}</td>
-
-                <td>{{level}}</td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
 </div>
 
 <script type="text/javascript" src="js/markets.js"></script>

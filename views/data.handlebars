@@ -1,28 +1,31 @@
 <div class="container main">
 
-  <div class="questionChartContainer">
-     <div class="form-group">
-        <label for="market-name-dropdown" class="required-input">View assessment data for:</label>
-        <select class="form-control custom-select" id="market-name-dropdown" name="marketName" required>
-          <option disabled selected value>-- Select a question --</option>
-          <!--options-->
-          <option>NEW MARKET</option>
-        </select>
+  <div class="card">
+    <div class="card-body">
+      <div class="questionChartContainer">
+        <div class="form-group">
+            <label for="market-name-dropdown" class="required-input">View assessment data for:</label>
+            <select class="form-control custom-select" id="market-name-dropdown" name="marketName" required>
+              <option disabled selected value>-- Select a question --</option>
+              <!--options-->
+              <option>NEW MARKET</option>
+            </select>
+          </div>
+        
+        <div id="questionChart" style=""></div>
       </div>
-    
-    <div id="questionChart" style=""></div>
-  </div>
 
-  <div class="sideChartContainer">
-    <div class="chartContainer">
-      <div id="levelChart" style=""></div>
+      <div class="sideChartContainer">
+        <div class="chartContainer">
+          <div id="levelChart" style=""></div>
+        </div>
+
+        <div class="chartContainer">
+          <div id="typeChart" style=""></div>
+        </div>
+      </div>
     </div>
-
-    <div class="chartContainer">
-      <div id="typeChart" style=""></div>
-    </div>
   </div>
-
 </div>
 
 

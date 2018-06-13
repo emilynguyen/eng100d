@@ -26,6 +26,7 @@ var data = require("./routes/data");
 const sqlite3 = require('sqlite3');
 const assessments = new sqlite3.Database('assessment.db');
 const userdb = new sqlite3.Database('users_accounts.db');
+const marketdb = new sqlite3.Database('./markets.db');
 
 var app = express();
 
@@ -80,38 +81,13 @@ app.post("/assess-submit", assess.submit);
 app.get("/admin-login", admin.loginView);
 app.get("/admin",authenticationMiddleware(), admin.view);
 app.get("/data", data.view);
-app.get("/markets", (req, res) =>{
-
-  assessments.all('SELECT * FROM assessmentTable', (err,rows) =>{
-    if(rows.length > 0){
-      console.log(rows);
-      var currentObj;
-      var assessmentArray = new Array();
-
-      for (var i = 0; i < rows.length; i++){
-          currentObj = JSON.parse(rows[i].name);
-          assessmentArray[i] = currentObj;
-      }
-
-      res.render("markets", {
-        assessmentArray,
-        title: "Our Markets | LWCMP Tool"
-      });
-
-    }else{
-      res.send("There are no markets currently in the database");
-    }
-  });
-});
-
+app.get("/markets", markets.view);
 
 //ends the session and returns to main page
 app.get('/logout', function(req, res, next){
       req.logout();
       res.redirect('admin-login');
 });
-
-
 
 //code that searches for the user account in database
 passport.use(new LocalStrategy(function(username, password, done) {
@@ -179,19 +155,22 @@ app.get('/markets/:name', (req, res) =>{
 //GET Request for all markets
 app.get('/marketss', (req,res) => {
   console.log("get request called");
-  assessments.all('SELECT * FROM assessmentTable', (err,rows) =>{
+  marketdb.all('SELECT * FROM markets', (err,rows) =>{
     if(rows.length > 0){
       //console.log(rows[0].name);
-      console.log(rows);
+      //console.log(rows);
       //console.log("Rows[0].name printed above");
       //console.log(rows);
       //res.send(JSON.parse(rows));
-      res.send(rows);
+      const marketsdb = JSON.parse(rows[0].data);
+      console.log(marketsdb);
+      res.send(marketsdb);
       //console.log("rows parsed");
     }else{
       res.send("There are no markets currently in the database");
     }
   });
+
 });
 
 //TEST POST REQUEST

@@ -2,12 +2,12 @@
  * GET data page.
  */
 
-var markets = require('../markets.json');
-var questions = require('../questions.json');
+//var markets = require('../markets.json');
+//var questions = require('../questions.json');
 
 exports.view = function(req, res) {
     res.render('data', {
-      markets, questions,
+      /*markets, questions,*/
       title: "Market Data | LWCMP Tool"
   });
 };

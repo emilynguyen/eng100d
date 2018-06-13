@@ -1,25 +1,13 @@
-//console.log('step1');
-
-//var assessmentArray;
-//var currentObj;
-
 $.get('/marketss', function(rows){
 
     /* Parse all markets */
     var assessmentArray = new Array();
     let currentObj;
 
-    console.log(rows[0].name);
-    console.log(rows[1].name);
-    console.log(rows[2].name);
-    console.log(rows[3].name);
-
     for (var i = 0; i < rows.length; i++){
-        currentObj = JSON.parse(rows[i].name);
+        currentObj = rows[i];
         assessmentArray[i] = currentObj;
     }
-
-    console.log(assessmentArray);
 
     /* Levels graph */
     let levelZero = 0;
@@ -78,37 +66,31 @@ $.get('/marketss', function(rows){
     let convenience = 0;
     let currStore;
     var typeArray;
-/*
-    console.log("rows[0].storeType is " + rows[3].storeType);
 
-    Calculate types of markets 
+    /*Calculate types of markets */
     for (var i = 0; i < assessmentArray.length; i++){
-        //currStore = assessmentArray[i];
-        if(currStore == 0) {
+        currStore = assessmentArray[i];
+
+        if(currStore.storeType == "Convenience") {
             convenience++;
         }
-        else if(currStore == 1) {
+        else if(currStore.storeType == "Small") {
             small++;
         }
-        else if(currStore == 2) {
+        else if(currStore.storeType == "Medium") {
             medium++;
         }
         else{
             large++;
         }
-    } */
-
-        /*console.log("levelZero count: " + levelZero);
-        console.log("levelOne count: " + levelOne);
-        console.log("levelTwo count: " + levelTwo);
-        console.log("levelThree count: " + levelThree);*/
+    }
 
     typeArray = [
         ['Market Type', 'Number of Markets'],
-        ['Convenience', 3],
-        ['Small', 3],
-        ['Medium', 4],
-        ['Large', 5]
+        ['Convenience', convenience],
+        ['Small', small],
+        ['Medium', medium],
+        ['Large', large]
     ];
     
     /* Google charts */
