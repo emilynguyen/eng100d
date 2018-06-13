@@ -172,6 +172,11 @@ $.get('/marketss', function(rows){
 
     /* Iterate through assessment database */
     for (var i = 0; i < assessmentArray.length; i++){
+        
+        /* If no assessment saved, skip market */
+        if (assessmentArray[i].assessments.length == 0){
+            break;
+        }
 
         currAnswersArray = assessmentArray[i].assessments[0].answers;
 
