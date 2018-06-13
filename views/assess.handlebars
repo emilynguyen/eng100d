@@ -16,44 +16,54 @@
       <li>
         <div class="form-group">
 
-        <p {{#if required}}class="required-input"{{/if}}>{{title}}</p>
+        <p {{#if required}}class="question-title required-input"{{/if}}>{{title}}</p>
 
         {{#ifEquals type 'open'}}
-          <input class="form-control" type="text" name="{{title}}" {{#if required}}required{{/if}}>
+          <div class="answers">
+            <input class="form-control" type="text" name="{{title}}" {{#if required}}required{{/if}}>
+          </div>
         {{/ifEquals}}
 
         {{#ifEquals type 'yn'}}
-          {{#each choices}}
-            <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" name="{{../title}}" id="{{choice}}-{{@../index}}" class="custom-control-input" value="{{choice}}" {{#if ../required}}required{{/if}}>
-              <label class="custom-control-label" for="{{choice}}-{{@../index}}">{{choice}}</label>
+          <div class="answers">
+            {{#each choices}}
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" name="{{../title}}" id="{{choice}}-{{@../index}}" class="custom-control-input" value="{{choice}}" {{#if ../required}}required{{/if}}>
 
-              <input class="points-input" type="hidden" name="points" value="{{level}}" disabled>
-            </div>
+                <label class="custom-control-label" for="{{choice}}-{{@../index}}">{{choice}}</label>
 
-          {{/each}}
+                <input class="points-input" type="hidden" name="points" value="{{level}}" disabled>
+              </div>
+            {{/each}}
+          </div>
         {{/ifEquals}}
 
         {{#ifEquals type 'range'}}
-          {{#each choices}}
-            <div class="custom-control custom-radio">
-              <input type="radio" name="{{../title}}" id="{{choice}}-{{@../index}}" class="custom-control-input" value="{{choice}}" {{#if ../required}}required{{/if}}>
-              <label class="custom-control-label" for="{{choice}}-{{@../index}}">{{choice}}</label>
+          <div class="answers">
+            {{#each choices}}
+              <div class="custom-control custom-radio">
+                <input type="radio" name="{{../title}}" id="{{choice}}-{{@../index}}" class="custom-control-input" value="{{choice}}" {{#if ../required}}required{{/if}}>
 
-              <input class="points-input" type="hidden" name="points" value="{{level}}" disabled>
-            </div>
-          {{/each}}
+                <label class="custom-control-label" for="{{choice}}-{{@../index}}">{{choice}}</label>
+
+                <input class="points-input" type="hidden" name="points" value="{{level}}" disabled>
+              </div>
+            {{/each}}
+          </div>
         {{/ifEquals}}
 
         {{#ifEquals type 'quality'}}
-          {{#each choices}}
-            <div class="custom-control custom-radio">
-              <input type="radio" name="{{../title}}" id="{{choice}}-{{@../index}}" class="custom-control-input" value="{{choice}}" {{#if ../required}}required{{/if}}>
-              <label class="custom-control-label" for="{{choice}}-{{@../index}}">{{choice}}</label>
+          <div class="answers">
+            {{#each choices}}
+              <div class="custom-control custom-radio">
+                <input type="radio" name="{{../title}}" id="{{choice}}-{{@../index}}" class="custom-control-input" value="{{choice}}" {{#if ../required}}required{{/if}}>
 
-              <input class="points-input" type="hidden" name="points" value="{{level}} disabled">
-            </div>
-          {{/each}}
+                <label class="custom-control-label" for="{{choice}}-{{@../index}}">{{choice}}</label>
+
+                <input class="points-input" type="hidden" name="points" value="{{level}} disabled">
+              </div>
+            {{/each}}
+          </div>
         {{/ifEquals}}
 
         </div>
