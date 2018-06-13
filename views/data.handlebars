@@ -3,26 +3,35 @@
   <div class="card">
     <div class="card-body">
       <div class="questionChartContainer">
-        <div class="form-group">
-            <label for="market-name-dropdown" class="required-input">View assessment data for:</label>
-            <select class="form-control custom-select" id="market-name-dropdown" name="marketName" required>
-              <option disabled selected value>-- Select a question --</option>
-              <!--options-->
-              <option>NEW MARKET</option>
-            </select>
-          </div>
         
-        <div id="questionChart" style=""></div>
+        <form id="question-form" onchange="drawQuestion()">
+          <div class="form-group">
+            <label for="market-name-dropdown" class="required-input">Viewing data for assessment question:</label>
+            <select class="form-control custom-select" id="question-name-dropdown" name="questionTitle" required>
+              <option disabled selected value>-- Select a question to show graph --</option>
+              <!--options-->
+              {{#each questions}}
+                <option>{{title}}</option>
+              {{/each}}
+              </select>
+          </div>
+        </form>
+
+        <div class="chartContainer">
+          <div id="questionChart" style=""></div>
+        </div>
       </div>
 
+      <!-- Overall statistics charts -->
       <div class="sideChartContainer">
-        <div class="chartContainer">
+        <p>Overall Statistics</p>
+  
           <div id="levelChart" style=""></div>
-        </div>
+     
 
-        <div class="chartContainer">
+       
           <div id="typeChart" style=""></div>
-        </div>
+       
       </div>
     </div>
   </div>

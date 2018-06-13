@@ -9,7 +9,7 @@ $.get('/marketss', function(rows){
         assessmentArray[i] = currentObj;
     }
 
-    /* Levels graph */
+    /* Levels chart */
     let levelZero = 0;
     let levelOne = 0;
     let levelTwo = 0;
@@ -42,7 +42,7 @@ $.get('/marketss', function(rows){
         ['Level 3', levelThree]
     ];
     
-    /* Render graph */
+    /* Render chart */
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawLevelChart);
     
@@ -51,7 +51,24 @@ $.get('/marketss', function(rows){
         var levelData = google.visualization.arrayToDataTable(levelArray);
 
         var levelOptions = {
-            title: 'Market Level'
+            title: 'Market Level',
+            chartArea: {left: 73},
+            legend: {
+                textStyle: {
+                    color: '#838488',
+                    fontSize: '11px'
+                }
+            },
+            slices:[
+                {color: '#7B7B7B'},
+                {color: '#FDC947'},
+                {color: '#C7D48D'},
+                {color: '#35C0C8'}
+            ],
+            titleTextStyle:{
+                bold: false,
+                fontSize: 12
+            }
         };
 
         var levelChart = new google.visualization.PieChart(document.getElementById('levelChart'));
@@ -59,7 +76,7 @@ $.get('/marketss', function(rows){
         levelChart.draw(levelData, levelOptions);
     }
 
-    /* Storetype Graph */
+    /* Store Type chart */
     let small = 0;
     let medium = 0;
     let large = 0;
@@ -67,7 +84,7 @@ $.get('/marketss', function(rows){
     let currStore;
     var typeArray;
 
-    /*Calculate types of markets */
+    /* Calculate types of markets */
     for (var i = 0; i < assessmentArray.length; i++){
         currStore = assessmentArray[i];
 
@@ -93,85 +110,250 @@ $.get('/marketss', function(rows){
         ['Large', large]
     ];
     
-    /* Google charts */
-   // google.charts.load('current', {'packages':['corechart']});
+    /* Render chart */
     google.charts.setOnLoadCallback(drawTypeChart);
 
-    /*levelArray = calcLevelCounts(markets);*/
-    
     function drawTypeChart() {
 
         var typeData = google.visualization.arrayToDataTable(
             typeArray);
 
         var typeOptions = {
-            title: 'Market Type'
+            title: 'Market Type',
+            chartArea: {left: 73},
+            legend: {
+                textStyle: {
+                    color: '#838488',
+                    fontSize: '11px'
+                }
+            },
+            slices:[
+                {color: '#7B7B7B'},
+                {color: '#FDC947'},
+                {color: '#C7D48D'},
+                {color: '#35C0C8'}
+            ],
+            titleTextStyle:{
+                bold: false,
+                fontSize: 12
+            }
         };
 
         var typeChart = new google.visualization.PieChart(document.getElementById('typeChart'));
 
         typeChart.draw(typeData, typeOptions);
     }
+});
 
-    /* Question Graph */
-  /*  let small = 0;
-    let medium = 0;
-    let large = 0;
-    let convenience = 0;
-    let currStore;*/
+/* Question Chart */
+function drawQuestion(){
+    
+var questionTitle = document.getElementById("question-name-dropdown").value;
+
+console.log(questionTitle);
+
+$.get('/marketss', function(rows){
+
+    /* Parse all markets */
+    var assessmentArray = new Array();
+    let currentObj;
+    
+    for (var i = 0; i < rows.length; i++){
+        currentObj = rows[i];
+        assessmentArray[i] = currentObj;
+    }
+
     var questionArray;
-/*
-    console.log("rows[0].storeType is " + rows[3].storeType);
+    let currAnswersArray;
+    let answerArray;
+    let answerCountArray = new Array();
 
-    Calculate types of markets 
+    console.log(assessmentArray);
+
+    /* Iterate through assessment database */
     for (var i = 0; i < assessmentArray.length; i++){
-        //currStore = assessmentArray[i];
-        if(currStore == 0) {
-            convenience++;
-        }
-        else if(currStore == 1) {
-            small++;
-        }
-        else if(currStore == 2) {
-            medium++;
-        }
-        else{
-            large++;
-        }
-    } */
 
-        /*console.log("levelZero count: " + levelZero);
-        console.log("levelOne count: " + levelOne);
-        console.log("levelTwo count: " + levelTwo);
-        console.log("levelThree count: " + levelThree);*/
+        currAnswersArray = assessmentArray[i].assessments[0].answers;
 
-    questionArray = [
-        ['Does the Market Sell Alcohol', 'Number of Markets'],
-        ['Yes', 9],
-        ['No', 4]
-    ];
+        /* Iterate through answers array of market */
+        for (var j = 0; j < currAnswersArray.length; j++){
+
+            /* If question matches, add answer to array of answers */
+            if (questionTitle == currAnswersArray[j].q){
+                answerCountArray[i] = currAnswersArray[j].a;
+            }
+        }
+    }
+
+    console.log(answerCountArray);
+
+    let currAnswer;
+    /* Initialize answer counters */
+    let yesCount = 0;
+    let noCount = 0;
+    let zeroCount = 0;
+    let oneToTwoCount = 0;
+    let threeToFiveCount = 0;
+    let sixToNineCount = 0;
+    let tenPlusCount = 0;
+    let allPoorCount = 0;
+    let mixedPoorCount = 0;
+    let mixedGoodCount = 0;
+    let allGoodCount = 0;
+
+    /* Initialize answer strings */
+    let oneToTwo = '1-2';
+    let threeToFive = '3-5';
+    let sixToNine = '6-9';
+    let tenPlus = '10+';
+    let allPoor = 'All or most is poor';
+    let mixedPoor = 'Mixed quality, more poor than good';
+    let mixedGood = 'Mixed quality, more good than poor';
+    let allGood = 'All or most is good';
+
+    /* Calculate answer counts */
+    for (var i = 0; i < answerCountArray.length; i++){
+        
+        currAnswer = answerCountArray[i];
+        console.log(currAnswer);
+        switch(currAnswer){
+            case 'Yes':
+                yesCount++;
+                break;
+            case 'No':
+                noCount++;
+                break;
+            case '0':
+                zeroCount++;
+                break;
+            case oneToTwo:
+                oneToTwoCount++;
+                break;
+            case threeToFive:
+                threeToFiveCount++;
+                break;
+            case sixToNine:
+                sixToNineCount++;
+                break;
+            case tenPlus:
+                tenPlusCount++;
+                break;
+            case allPoor:
+                allPoorCount++;
+                break;
+            case mixedPoor:
+                mixedPoorCount++;
+                break;
+            case mixedGood:
+                mixedGoodCount++;
+                break;
+            case allGood:
+                allGoodCount++;
+                break;
+        }
+    }
+
+    if( yesCount != 0 || noCount != 0){
+        answerArray = [
+            [ questionTitle, 'Number of Markets', {role: 'style'} ],
+            ['Yes', yesCount, 'color: #35C0C8'],
+            ['No', noCount, 'color: #EF7E24']
+        ];
+
+        google.charts.setOnLoadCallback(drawYesNoChart);
     
-    /* Google charts */
-   // google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawQuestionChart);
+        function drawYesNoChart() {
 
-    /*levelArray = calcLevelCounts(markets);*/
-    
-    function drawQuestionChart() {
+        var answerData = google.visualization.arrayToDataTable(
+            answerArray);
 
-        var questionData = google.visualization.arrayToDataTable(
-            questionArray);
-
-        var questionOptions = {
-            title: 'Does the Market Sell Alcohol?',
-            legend: {position: 'bottom'}
+        var answerOptions = {
+            title: questionTitle,
+            chartArea:{
+                width: '90%'
+            },
+            legend: {position: 'bottom'},
+            titleTextStyle: {
+                fontSize: 14
+            }
         };
 
         var typeChart = new google.visualization.BarChart(document.getElementById('questionChart'));
 
-        typeChart.draw(questionData, questionOptions);
+        typeChart.draw(answerData, answerOptions);
+        }
     }
-});
+    else if( zeroCount != 0 || oneToTwoCount != 0 || threeToFiveCount != 0
+        || sixToNineCount != 0 || tenPlusCount != 0 ){
+        answerArray = [
+            [ questionTitle, 'Number of Markets', {role: 'style'} ],
+            [ '0', zeroCount, 'color: #7B7B7B' ],
+            [ oneToTwo, oneToTwoCount, 'color: #FDC947' ],
+            [ threeToFive, threeToFiveCount, 'color: #C7D48D' ],
+            [ sixToNine, sixToNineCount, 'color: #35C0C8' ],
+            [ tenPlus, tenPlusCount, 'color: #EF7E24' ]
+        ];
+
+        google.charts.setOnLoadCallback(drawRangeChart);
+    
+        function drawRangeChart() {
+
+        var answerData = google.visualization.arrayToDataTable(
+            answerArray);
+
+        var answerOptions = {
+            title: questionTitle,
+            chartArea:{
+                width: '90%'
+            },
+            legend: {position: 'bottom'},
+            titleTextStyle: {
+                fontSize: 14
+            }
+        };
+
+        var typeChart = new google.visualization.BarChart(document.getElementById('questionChart'));
+
+        typeChart.draw(answerData, answerOptions);
+        }
+    }
+    else {
+        answerArray = [
+            [ questionTitle, 'Number of Markets', {role: 'style'} ],
+            [ allPoor, allPoorCount, 'color: #FDC947' ],
+            [ mixedPoor, mixedPoorCount, 'color: #C7D48D' ],
+            [ mixedGood, mixedGoodCount, 'color: #35C0C8' ],
+            [ allGood, allGoodCount, 'color: #EF7E24' ]
+        ];
+
+        google.charts.setOnLoadCallback(drawDescriptionChart);
+    
+        function drawDescriptionChart() {
+
+        var answerData = google.visualization.arrayToDataTable(
+            answerArray);
+
+        var answerOptions = {
+            title: questionTitle,
+            chartArea:{
+                width: '90%'
+            },
+            legend: {position: 'bottom'},
+            titleTextStyle: {
+                fontSize: 14
+            }
+        };
+
+        var typeChart = new google.visualization.BarChart(document.getElementById('questionChart'));
+
+        typeChart.draw(answerData, answerOptions);
+        }
+    }
+
+    });
+};
+
+
 
 
 

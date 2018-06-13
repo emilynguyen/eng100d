@@ -8533,11 +8533,17 @@ textarea {
   display: block; }
 
 .questionChartContainer {
-  width: 70%;
-  height: 0px;
-  text-align: justify; }
+  width: 65%;
+  float: left; }
 
 .sideChartContainer {
-  width: 50%;
-  margin-top: 8%;
-  margin-left: 60%; }
+  width: 35%;
+  margin-top: 1vw;
+  margin-left: 65%; }
+  .sideChartContainer p {
+    margin-left: 70px;
+    margin-top: -13px; }
+
+.chartContainer {
+  margin-top: 80px;
+  height: 300px; }

@@ -157,21 +157,16 @@ app.get('/marketss', (req,res) => {
   console.log("get request called");
   marketdb.all('SELECT * FROM markets', (err,rows) =>{
     if(rows.length > 0){
-      //console.log(rows[0].name);
-      //console.log(rows);
-      //console.log("Rows[0].name printed above");
-      //console.log(rows);
-      //res.send(JSON.parse(rows));
       const marketsdb = JSON.parse(rows[0].data);
       console.log(marketsdb);
       res.send(marketsdb);
-      //console.log("rows parsed");
     }else{
       res.send("There are no markets currently in the database");
     }
   });
-
 });
+
+
 
 //TEST POST REQUEST
 app.post('/data', (req, res)=>{
