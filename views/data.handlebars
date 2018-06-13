@@ -1,5 +1,6 @@
 <div class="container main">
 
+  <h2>Market Data</h2>
   <div class="card">
     <div class="card-body">
       <div class="questionChartContainer">
@@ -11,7 +12,9 @@
               <option disabled selected value>-- Select a question to show graph --</option>
               <!--options-->
               {{#each questions}}
-                <option>{{title}}</option>
+                {{#unless sectionBreak}}
+                  <option>{{title}}</option>
+                {{/unless}}
               {{/each}}
               </select>
           </div>

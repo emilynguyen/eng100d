@@ -14,7 +14,7 @@ exports.view = function(req, res) {
 
       res.render("markets", {
         /*questions, */markets,
-        title: "Market Assessment | LWCMP Tool"
+        title: "Market List | LWCMP Tool"
       });
 
     }

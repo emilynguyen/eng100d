@@ -17,7 +17,7 @@ exports.view = function(req, res) {
 
           res.render("assess", {
             questions, markets,
-            title: "Market Assessment | LWCMP Tool"
+            title: "Assess a Market | LWCMP Tool"
           });
         }
         else {
