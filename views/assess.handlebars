@@ -62,8 +62,8 @@
         {{#ifEquals type 'quality'}}
           {{#each choices}}
             <div class="custom-control custom-radio">
-              <input type="radio" name="{{../title}}" id="{{choice}}-{{@index}}" class="custom-control-input" value="{{choice}}" {{#if ../required}}required{{/if}}>
-              <label class="custom-control-label" for="{{choice}}-{{@index}}">{{choice}}</label>
+              <input type="radio" name="{{../title}}" id="{{choice}}-{{@../index}}" class="custom-control-input" value="{{choice}}" {{#if ../required}}required{{/if}}>
+              <label class="custom-control-label" for="{{choice}}-{{@../index}}">{{choice}}</label>
 
               <input class="points-input" type="hidden" name="points" value="{{level}} disabled">
             </div>

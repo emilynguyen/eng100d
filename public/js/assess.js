@@ -142,11 +142,7 @@ function calcLevel() {
 }
 
 function submitAssessment() {
-
 	let level = calcLevel();
-
-  console.log('Submitted');
-  alert("Your assessment has been submitted.");
 
 	const answers = $assessment.serializeArray();
 	console.log(answers);
@@ -163,6 +159,10 @@ function submitAssessment() {
 		"answers": []
 	};
 	for (let i = 0; i < answers.length; i++) {
+		// Skip blank questions
+		if (answers[i].name === "points")
+			continue;
+			
 		assessment['answers'].push({
 			"q": answers[i].name,
 			"a": answers[i].value
@@ -174,14 +174,6 @@ function submitAssessment() {
 		"level": level,
 		"assessment": assessment
 	};
-/*
-	const testing = {
-		"name": marketName,
-		"address": addressInfo,
-		"storeType": storeType,
-		"level": level,
-		"assessment": assessment
-	}; */
 
 	$.ajax({
 			type: 'POST',
@@ -190,18 +182,8 @@ function submitAssessment() {
 			data: JSON.stringify(submission),
 		});
 
-
-/*
-	$.ajax({
-		type: 'POST',
-		url: '/assess-submit',
-		data: {
-			everything: JSON.stringify(testing)
-		},
-		success: (results) => {
-			console.log("Results: " + results);
-		},
-	}); */
+	console.log('Submitted');
+  alert("Your assessment has been submitted.");
 
   window.location.href = `/assessment/${marketName}/${timestamp}`;
 }
