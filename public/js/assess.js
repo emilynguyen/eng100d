@@ -164,11 +164,11 @@ function calcLevel() {
 	let level3progress = level3 / threshold3 * 100;
 
 	// Update final level if a threshold has been passed
-	if (level1progress >= 1) {
+	if (level1progress >= 100) {
 		finalLevel = 1
-		if (level2progress >= 1) {
+		if (level2progress >= 100) {
 			finalLevel = 2
-			if (level3progress >= 1) {
+			if (level3progress >= 100) {
 				finalLevel = 3
 			};
 		};
