@@ -11,19 +11,30 @@
                         <th>Store Type</th> 
                         <th>Zip Code</th>
                         <th>Level</th>
+                        <th>Map</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{#each markets}}
+                   
                     <tr>
-                        <td>{{name}}</td>
+                        
+                            <td>{{name}}</td>
 
-                        <td>{{storeType}}</td>
+                            <td>{{storeType}}</td>
 
-                        <td>{{address.zip}}</td>
+                            <td>{{address.zip}}</td>
 
-                        <td>{{level}}</td>
+                            <td>{{level}}</td>
+
+                            <td>
+                                <button class="mapButton" onclick="window.open('https://www.google.com/maps/dir/?api=1&origin={{name}}&destination={{address.address}}')">
+                                <p>Go!</p>
+                                </button>
+                            </td>
+                       
                     </tr>
+                    
                     {{/each}}
                 </tbody>
             </table>

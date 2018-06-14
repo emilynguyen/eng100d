@@ -8400,13 +8400,13 @@ input:checked + .slider:before {
     border-radius: 0.3rem;
     margin-left: auto;
     margin-right: auto;
-    max-width: 45rem; }
+    max-width: 50rem; }
 
 .home-hero {
   height: calc(100vh - 4.5rem);
   width: 100%;
   background-color: gray;
-  background: url("../img/hero.jpg") no-repeat center center fixed;
+  background: url("../img/background.jpg") no-repeat center center fixed;
   background-size: cover; }
 
 #assessment-q-list {
@@ -8531,6 +8531,20 @@ textarea {
 
 .show {
   display: block; }
+
+.mapButton {
+  background-color: #EF7E24;
+  border-radius: 5px;
+  text-align: center;
+  padding-top: 6px;
+  margin-left: 3px; }
+  .mapButton p {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 6px;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #ffffff; }
 
 .questionChartContainer {
   width: 65%;
