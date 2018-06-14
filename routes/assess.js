@@ -62,10 +62,12 @@ exports.viewAssessment = function(req, res) {
         }
         marketInfo = {
           name: markets[i].name,
-          address: markets[i].address.address + ", " + markets[i].address.city + ", " + markets[i].address.state
-    + " " + markets[i].address.zip,
+          address: markets[i].address,
           storeType: markets[i].storeType,
           level: markets[i].level,
+          level1progress: markets[i].level1progress,
+          level2progress: markets[i].level2progress,
+          level3progress: markets[i].level3progress,
           time: time
         }
       }

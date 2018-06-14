@@ -158,17 +158,28 @@ function calcLevel() {
 
 	let finalLevel = 0;
 
-	// Calculate progress for each level
-	let level1progress = level1 / threshold1 * 100;
-	let level2progress = level2 / threshold2 * 100;
-	let level3progress = level3 / threshold3 * 100;
+	// Set threshold needed to complete a level
+	const threshold = .85;
+	threshold1 *= threshold;
+	threshold2 *= threshold;
+	threshold3 *= threshold;
+
+	// Calculate progress for each level and round to 2 decimals
+	let level1progress = (level1 / threshold1 * 100).toFixed(2);
+	let level2progress = (level2 / threshold2 * 100).toFixed(2);
+	let level3progress = (level3 / threshold3 * 100).toFixed(2);
+
+	// If over 100% progress for a level, cap at 100
+	if (level1progress > 100) level1progress = 100;
+	if (level2progress > 100) level2progress = 100;
+	if (level3progress > 100) level3progress = 100;
 
 	// Update final level if a threshold has been passed
-	if (level1progress >= 100) {
+	if (level1progress == 100) {
 		finalLevel = 1
-		if (level2progress >= 100) {
+		if (level2progress == 100) {
 			finalLevel = 2
-			if (level3progress >= 100) {
+			if (level3progress == 100) {
 				finalLevel = 3
 			};
 		};
