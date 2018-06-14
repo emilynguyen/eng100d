@@ -62,12 +62,16 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+//variable to check if code has been entered
+let datalogin = false;
+
 
 //setting up global isAunthenticted var
 app.use(function(req , res, next){
   res.locals.isAuthenticated = req.isAuthenticated()
   next();
 });
+
 
 app.get("/", home.view);
 app.get("/assess", assess.view);
@@ -80,7 +84,8 @@ app.post("/assess-save-market", assess.saveMarket);
 app.post("/assess-submit", assess.submit);
 app.get("/admin-login", admin.loginView);
 app.get("/admin",authenticationMiddleware(), admin.view);
-app.get("/data", data.view);
+app.get("/data", authenticationLogin (), data.view);
+app.get("/data-login", data.loginView);
 app.get("/markets", markets.view);
 
 //ends the session and returns to main page
@@ -91,7 +96,7 @@ app.get('/logout', function(req, res, next){
 
 //code that searches for the user account in database
 passport.use(new LocalStrategy(function(username, password, done) {
-  userdb.get('SELECT user FROM users_accounts WHERE user= ?', username, function(err, row) {
+  userdb.get('SELECT user FROM users_accounts WHERE user= ? AND id = 1', username, function(err, row) {
     //failed to find user in database
     if (!row){
        return done(null, false);
@@ -105,6 +110,19 @@ passport.use(new LocalStrategy(function(username, password, done) {
     });
   });
 }));
+
+//data login post code
+app.post('/data-login', function(req, res, next){
+      userdb.get('SELECT user FROM users_accounts WHERE password= ?', req.body.code, function(err, row) {
+      //got the wrong password but correct user
+      if (!row) {
+        res.redirect('data-login');
+      }else{
+      datalogin =true;
+      res.redirect('data');
+    };
+    });
+});
 
 //login POST call checks for authentication
 app.post('/admin-login', passport.authenticate('local', { successRedirect: '/admin', failureRedirect: '/admin-login'}));
@@ -121,6 +139,17 @@ passport.deserializeUser(function(id, done) {
     return done(null, row);
   });
 });
+
+//function that check if code was entered
+function authenticationLogin () {
+  return (req, res, next) => {
+      if (datalogin){ 
+        datalogin = false;
+        return next();
+      }
+      res.redirect('/data-login')
+  }
+};
 
 //function that check if user was logged in
 function authenticationMiddleware () {

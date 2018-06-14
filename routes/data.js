@@ -4,6 +4,14 @@
 
 const sqlite3 = require('sqlite3');
 let questionsdb = new sqlite3.Database('./questions.db');
+let value = false;
+
+exports.loginView = function(req, res) {
+  res.render("data-login", {
+    title: "Data Code Required"
+  });
+};
+
 
 exports.view = function(req, res) {
 

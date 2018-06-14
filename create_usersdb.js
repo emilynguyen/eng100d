@@ -9,8 +9,9 @@ userdb.serialize(() => {
   // create a new database table:
   userdb.run("CREATE TABLE users_accounts (id INTEGER, user TEXT, password TEXT)");
 
-  // insert 3 rows of data:
+  // insert 2 rows of data:
   userdb.run("INSERT INTO users_accounts VALUES ( 1, 'cch_admin', 'dance')");
+  userdb.run("INSERT INTO users_accounts VALUES ( 2, 'data_login', '1234')");
 
   console.log('successfully created the users_accounts table in users_accounts.db');
 
