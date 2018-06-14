@@ -34,7 +34,7 @@
 }
 
 .market-info {
-  @include media-breakpoint-only(xs) {
-    margin-bottom: 1rem;
+  @include media-breakpoint-down(sm) {
+    margin-bottom: 1.5rem;
   }
 }

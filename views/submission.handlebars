@@ -1,11 +1,18 @@
 <div class="container main">
+  {{#if ./isAuthenticated}}
+    <div class="text-right mb-4">
+      <a href="#" class="btn btn-danger delete-assessment-btn">
+        Delete Assessment
+      </a>
+    </div>
+  {{/if}}
+
   {{#with marketInfo}}
 
     <h2>{{name}} Assessment (ID {{time}})</h2>
 
-    {{#unless ../isAuthenticated}}
     <div class="row">
-      <div class="col-md-7 market-info">
+      <div class="col-md-6 market-info">
 
         <div class="card h-100">
           <div class="card-header">
@@ -13,25 +20,21 @@
           </div>
           <div class="card-body">
             <div class="row">
-              <div class="col-5">
+              <div class="col-7">
                 <h5>Address</h5>
-                {{address}}
+                {{address.address}}<br>
+                {{address.city}}, {{address.state}} {{address.zip}}
               </div>
-              <div class="col-4">
+              <div class="col-5">
                 <h5>Store type</h5>
                 {{storeType}}
-              </div>
-              <div class="col-3">
-                <h5>Level</h5>
-                <h1>{{level}}</h1>
               </div>
             </div>
           </div>
         </div>
-
       </div>
-      <div class="col-md-5">
 
+      <div class="col-md-6">
         {{#with ../submission}}
         <div class="card h-100">
           <div class="card-header">
@@ -40,14 +43,14 @@
           <div class="card-body">
 
             <div class="row">
-              <div class="col-6">
+              <div class="col-6 {{#if ../isAuthenticated}}col-sm-4{{/if}}">
                 <div class="card-title">
                   <h5>Submitted by</h5>
                   {{evaluator.first}} {{evaluator.last}}<br>
                   <a href="mailto:{{evaluator.email}}">{{evaluator.email}}</a>
                 </div>
               </div>
-              <div class="col-6">
+              <div class="col-6 {{#if ../isAuthenticated}}col-sm-4{{/if}}">
                 <div class="card-title">
                   <h5>Completed on</h5>
                   <span class="time-col">{{evaluator.time}}</span>
@@ -58,64 +61,48 @@
           </div>
         </div> <!-- /.card -->
         {{/with}}
-
       </div>
+
+      <div class="col-12 pt-4">
+        <div class="card h-100">
+          <div class="card-header">
+            Current Market Progress
+          </div>
+          <div class="card-body text-center ">
+            <div class="row">
+              <div class="col-3">
+                <h4>Level</h4>
+                <h1>{{level}}</h1>
+              </div>
+              {{#if level1progress}}
+                <div class="col-3 d-flex align-items-center">
+                  <div>
+                    <h6>Level 1</h6>
+                    {{level1progress}}%
+                  </div>
+                </div>
+                <div class="col-3 d-flex align-items-center">
+                  <div>
+                    <h6>Level 2</h6>
+                    {{level2progress}}%
+                  </div>
+                </div>
+                <div class="col-3 d-flex align-items-center">
+                  <div>
+                    <h6>Level 3</h6>
+                    {{level3progress}}%
+                  </div>
+                </div>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
-    {{/unless}}
 
   {{/with}}
 
-  {{#with submission}}
-
-  {{#if ../isAuthenticated}}
-  <div class="card">
-    <div class="card-header">
-      Assessment Info
-    </div>
-    <div class="card-body">
-
-      <div class="row">
-        <div class="col-6 col-sm-4">
-          <div class="card-title">
-            <h5>Submitted by</h5>
-          </div>
-        </div>
-        <div class="col-6 col-sm-4">
-          <div class="card-title">
-            <h5>Completed on</h5>
-          </div>
-        </div>
-        {{#if ../isAuthenticated}}
-        <div class="d-none d-sm-block col-sm-4 text-right">
-          <a href="#" class="btn btn-danger btn-sm delete-assessment-btn">
-            Delete Assessment
-          </a>
-        </div>
-        {{/if}}
-      </div>
-
-      <div class="row">
-        <div class="col-6 col-sm-4">
-          {{evaluator.first}} {{evaluator.last}}<br>
-          <a href="mailto:{{evaluator.email}}">{{evaluator.email}}</a>
-        </div>
-        <div class="col-6 col-sm-4 time-col">
-          {{evaluator.time}}
-        </div>
-        <div class="col-12 col-sm-4 d-sm-none text-right">
-          {{#if ../isAuthenticated}}
-            <br>
-            <a href="#" class="btn btn-danger btn-sm delete-assessment-btn">
-              Delete Assessment
-            </a>
-          {{/if}}
-        </div>
-      </div>
-    </div>
-  </div>
-  {{/if}}
-
-  {{/with}}
 
   <div class="card mt-4">
     <div class="card-body">

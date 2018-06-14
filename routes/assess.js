@@ -62,10 +62,12 @@ exports.viewAssessment = function(req, res) {
         }
         marketInfo = {
           name: markets[i].name,
-          address: markets[i].address.address + ", " + markets[i].address.city + ", " + markets[i].address.state
-    + " " + markets[i].address.zip,
+          address: markets[i].address,
           storeType: markets[i].storeType,
           level: markets[i].level,
+          level1progress: markets[i].level1progress,
+          level2progress: markets[i].level2progress,
+          level3progress: markets[i].level3progress,
           time: time
         }
       }
@@ -212,6 +214,9 @@ exports.saveMarket = function(req, res) {
 exports.submit = function(req, res) {
   const assessment = req.body.assessment;
   const level = req.body.level;
+  const level1progress = req.body.level1progress;
+  const level2progress = req.body.level2progress;
+  const level3progress = req.body.level3progress;
   const name = req.body.marketName;
 
   marketdb.all('SELECT * FROM markets', (err,rows) => {
@@ -222,8 +227,10 @@ exports.submit = function(req, res) {
         // Find market
         if (markets[i].name === name) {
           markets[i].assessments.unshift(assessment);
-          // TEMP DISABLE UPDATING LEVEL SINCE IDK HOW TO CALC THIS
-          //markets[i].level = level;
+          markets[i].level = level;
+          markets[i].level1progress = level1progress;
+          markets[i].level2progress = level2progress;
+          markets[i].level3progress = level3progress;
         }
       }
 
@@ -238,23 +245,4 @@ exports.submit = function(req, res) {
       console.log("Markets database is empty");
     }
   });
-
-
-/*
-  console.log(req.body);
-
-  let name = req.body.marketName;
-  let assessment = req.body.assessment;
-  let level = req.body.level;
-
-  assessments.run("INSERT INTO assessmentTable(name) VALUES(?)", req.body.everything); */
-
-  //assessments.run("INSERT INTO assessmentTable(name, address) VALUES(?,?)", req.body.assessment, req.body.submission);
-  /*
-  assessments.run("INSERT INTO assessmentTable(firstName, lastName, marketName, email, level, assessment) VALUES(?,?,?,?,?,?)",
-  req.body['evaluator[first]'], req.body['evaluator[last]'], req.body.marketName, req.body['evaluator[email]'], req.body.level, req.body.answers);
-
-  res.send("Completed Assessment"); */
 };
-
-//marketdb.close();
